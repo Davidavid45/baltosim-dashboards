@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BALTOSim Dashboards</title>
+  <style>
+    :root {
+      --bg: #f4f1e8;
+      --panel: #ffffff;
+      --ink: #162033;
+      --muted: #5f6878;
+      --line: #ddd8cb;
+      --accent: #245b9f;
+      --accent-soft: #e6f0fb;
+      --success: #2f6d32;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.5;
+    }
+    .page {
+      width: min(1060px, calc(100% - 32px));
+      margin: 32px auto;
+      background: var(--panel);
+      border-radius: 12px;
+      padding: 28px 30px 32px;
+      box-shadow: 0 1px 2px rgba(0,0,0,.04);
+    }
+    header {
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 18px;
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    h1 {
+      font-size: 28px;
+      line-height: 1.15;
+      margin: 0 0 8px;
+      font-weight: 650;
+      letter-spacing: 0;
+    }
+    .dek {
+      margin: 0;
+      max-width: 760px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      white-space: nowrap;
+      font-size: 12px;
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      border: 1px solid #c9ddf3;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 14px;
+    }
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+      text-decoration: none;
+      color: inherit;
+      background: #fff;
+      min-height: 170px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .card:hover {
+      border-color: #b6c9df;
+      box-shadow: 0 2px 8px rgba(22,32,51,.08);
+    }
+    .eyebrow {
+      margin: 0 0 8px;
+      color: var(--success);
+      font-size: 12px;
+      font-weight: 650;
+      text-transform: uppercase;
+      letter-spacing: .02em;
+    }
+    h2 {
+      margin: 0 0 8px;
+      font-size: 20px;
+      line-height: 1.25;
+      font-weight: 650;
+      letter-spacing: 0;
+    }
+    .summary {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .meta {
+      margin: 18px 0 0;
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 600;
+    }
+    footer {
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: 12.5px;
+    }
+    @media (max-width: 720px) {
+      .page { width: min(100% - 20px, 1060px); padding: 22px 18px; }
+      header { display: block; }
+      .badge { margin-top: 14px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <div>
+        <h1>BALTOSim Dashboards</h1>
+        <p class="dek">Scenario screens and accessibility summaries for Baltimore transit planning work. Dashboards posted here are review drafts until marked otherwise.</p>
+      </div>
+      <span class="badge">Review draft hub</span>
+    </header>
+
+    <section class="grid" aria-label="Available dashboards">
+      <a class="card" href="./dashboards/citylink-frequency/index.html">
+        <div>
+          <p class="eyebrow">Review draft</p>
+          <h2>CityLink Frequency Scenario</h2>
+          <p class="summary">Routing-based comparison of the current network and the BMORE BUS CityLink frequency increase scenario, with access screens for priority destinations.</p>
+        </div>
+        <p class="meta">Open dashboard</p>
+      </a>
+    </section>
+
+    <footer>
+      BALTOSim dashboard hub for review and stakeholder discussion. Results should be checked against the methods and caveats inside each dashboard before public citation.
+    </footer>
+  </main>
+</body>
+</html>

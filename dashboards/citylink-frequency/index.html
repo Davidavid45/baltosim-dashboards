@@ -1,0 +1,762 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CityLink scenario briefing dashboard (mockup)</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/3.3.0/tabler-icons.min.css">
+<style>
+  :root {
+    --color-background-primary: #ffffff;
+    --color-background-secondary: #f4f3ee;
+    --color-background-tertiary: #ebe9e0;
+    --color-background-info: #e6f1fb;
+    --color-background-success: #eaf3de;
+    --color-background-warning: #faeeda;
+    --color-text-primary: #1a1a1a;
+    --color-text-secondary: #6b6961;
+    --color-text-tertiary: #908d83;
+    --color-text-info: #0c447c;
+    --color-text-success: #3b6d11;
+    --color-text-warning: #854f0b;
+    --color-border-tertiary: rgba(0,0,0,0.10);
+    --color-border-secondary: rgba(0,0,0,0.18);
+    --color-border-primary: rgba(0,0,0,0.28);
+    --color-border-info: #b5d4f4;
+    --color-border-warning: #854f0b;
+    --border-radius-md: 8px;
+    --border-radius-lg: 12px;
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  }
+  body { font-family: var(--font-sans); color: var(--color-text-primary); background: var(--color-background-tertiary); margin: 0; padding: 28px 16px; font-size: 14px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+  .page { max-width: 1200px; margin: 0 auto; background: var(--color-background-primary); border-radius: var(--border-radius-lg); padding: 22px 28px 28px; }
+  h1 { margin: 0; font-size: 22px; font-weight: 500; }
+  p { margin: 0; }
+  ul, ol { margin: 0; padding-left: 18px; }
+  ul li, ol li { margin-bottom: 3px; line-height: 1.55; }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+  .header-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin: 0 0 18px; padding-bottom: 14px; border-bottom: 0.5px solid var(--color-border-tertiary); }
+  .header-row .subtitle { margin: 4px 0 0; font-size: 13.5px; color: var(--color-text-secondary); }
+
+  .tab-strip { display: flex; gap: 0; border-bottom: 0.5px solid var(--color-border-tertiary); margin: 0 0 1.5rem; font-size: 13px; flex-wrap: wrap; }
+  .tab-btn { padding: 10px 14px; color: var(--color-text-secondary); border-bottom: 2px solid transparent; background: none; border-top: 0; border-left: 0; border-right: 0; font: inherit; cursor: pointer; }
+  .tab-btn.active { color: var(--color-text-primary); border-bottom-color: var(--color-text-primary); font-weight: 500; }
+  .tab-btn:hover { color: var(--color-text-primary); }
+
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  .raised { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 14px 16px; }
+  .kpi { background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 12px 14px; }
+  .kpi .label { font-size: 12px; color: var(--color-text-secondary); margin: 0 0 4px; display: flex; align-items: center; gap: 4px; }
+  .kpi .value { font-size: 22px; font-weight: 500; margin: 0; line-height: 1.2; }
+  .kpi .foot { font-size: 11px; color: var(--color-text-secondary); margin: 4px 0 0; }
+  .kpi.emphasis { background: var(--color-background-primary); border: 0.5px solid var(--color-border-secondary); }
+
+  .pane-head { font-size: 13px; font-weight: 500; margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
+  .section-label { font-size: 12px; color: var(--color-text-secondary); margin: 0 0 8px; font-weight: 500; }
+  .chip { font-size: 11px; padding: 3px 8px; border-radius: 6px; display: inline-flex; align-items: center; gap: 4px; line-height: 1; }
+  .chip.info { background: var(--color-background-info); color: var(--color-text-info); }
+  .chip.success { background: var(--color-background-success); color: var(--color-text-success); }
+  .chip.warn { background: var(--color-background-warning); color: var(--color-text-warning); }
+  .chip.neutral { background: var(--color-background-secondary); color: var(--color-text-secondary); }
+
+  .info-banner { background: var(--color-background-info); border: 0.5px solid var(--color-border-info); border-radius: var(--border-radius-lg); padding: 14px 18px; margin: 0 0 1.25rem; }
+  .info-banner .lead { margin: 0 0 4px; font-size: 14px; font-weight: 500; color: var(--color-text-info); }
+  .info-banner .body { margin: 0; font-size: 13px; line-height: 1.55; color: var(--color-text-info); opacity: 0.92; }
+
+  .warn-banner { background: var(--color-background-warning); border: 0.5px solid var(--color-text-warning); border-radius: var(--border-radius-md); padding: 12px 14px; margin: 0 0 1.25rem; display: flex; gap: 12px; align-items: flex-start; }
+  .warn-banner .ic { font-size: 20px; color: var(--color-text-warning); flex-shrink: 0; margin-top: 1px; }
+  .warn-banner .ttl { margin: 0 0 4px; font-size: 13px; font-weight: 500; color: var(--color-text-warning); }
+  .warn-banner .bd { margin: 0; font-size: 12.5px; line-height: 1.55; color: var(--color-text-warning); }
+
+  .pending-card { background: var(--color-background-secondary); border: 0.5px dashed var(--color-border-secondary); border-radius: var(--border-radius-lg); padding: 18px 20px; }
+  .pending-card .ph { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--color-text-secondary); font-weight: 500; margin: 0 0 8px; }
+  .pending-card .ttl { margin: 0 0 6px; font-size: 14px; font-weight: 500; color: var(--color-text-primary); }
+  .pending-card .bd { margin: 0; font-size: 13px; color: var(--color-text-secondary); line-height: 1.55; }
+  .pending-card ul { margin-top: 6px; }
+
+  .pending-inline { font-style: italic; color: var(--color-text-secondary); font-size: 12.5px; display: inline-flex; align-items: center; gap: 5px; }
+
+  .ds-box { background: var(--color-background-secondary); border-radius: var(--border-radius-lg); padding: 14px 18px; margin: 0 0 1.25rem; }
+  .ds-head { font-size: 13px; font-weight: 500; margin: 0 0 10px; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+  .ds-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px 18px; }
+  .ds-grid .row .k { font-size: 11px; color: var(--color-text-secondary); text-transform: lowercase; letter-spacing: 0.01em; margin: 0; }
+  .ds-grid .row .v { font-size: 12.5px; margin: 1px 0 0; line-height: 1.4; }
+  .ds-grid .row .v.pend { font-style: italic; color: var(--color-text-secondary); }
+
+  table.std { width: 100%; border-collapse: collapse; font-size: 13px; }
+  table.std th, table.std td { padding: 8px 8px; border-bottom: 0.5px solid var(--color-border-tertiary); text-align: left; vertical-align: middle; }
+  table.std th { font-size: 11.5px; font-weight: 500; color: var(--color-text-secondary); }
+  table.std td.num, table.std th.num { text-align: right; font-variant-numeric: tabular-nums; }
+  table.std td.pend, table.std td.pend-num { color: var(--color-text-secondary); font-style: italic; }
+  table.std td.pend-num { text-align: right; }
+
+  .glos-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+  .glos-group { margin-bottom: 14px; }
+  .glos-group .gh { font-size: 12px; font-weight: 500; color: var(--color-text-secondary); margin: 0 0 6px; }
+  table.glos { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  table.glos td { padding: 6px 8px; border-bottom: 0.5px solid var(--color-border-tertiary); vertical-align: top; line-height: 1.5; }
+  table.glos td.term { font-weight: 500; width: 32%; white-space: nowrap; }
+
+  .caveat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 0 0 1.5rem; }
+  .caveat-card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 14px 16px; display: flex; gap: 12px; }
+  .caveat-card .ic { font-size: 22px; color: var(--color-text-warning); flex-shrink: 0; }
+  .caveat-card .ttl { margin: 0 0 4px; font-size: 13px; font-weight: 500; }
+  .caveat-card .bd { margin: 0; font-size: 12.5px; line-height: 1.55; color: var(--color-text-secondary); }
+
+  .diag-row { display: grid; grid-template-columns: 28px 1fr auto; gap: 12px; align-items: flex-start; padding: 10px 0; border-bottom: 0.5px solid var(--color-border-tertiary); }
+  .diag-row:last-child { border-bottom: 0; }
+  .diag-row .ic { font-size: 18px; color: var(--color-text-secondary); }
+  .diag-row .ttl { margin: 0 0 3px; font-size: 13px; font-weight: 500; }
+  .diag-row .bd { margin: 0; font-size: 12px; color: var(--color-text-secondary); line-height: 1.55; }
+
+  .footer-line { font-size: 11px; color: var(--color-text-secondary); margin: 1rem 0 0; border-top: 0.5px solid var(--color-border-tertiary); padding-top: 10px; }
+
+  .dest-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 0 0 1.5rem; }
+  .dest-card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 14px 16px; }
+  .dest-card .cat { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; color: var(--color-text-secondary); }
+  .dest-card .nm { margin: 6px 0 2px; font-size: 15px; font-weight: 500; }
+  .dest-card .sub { margin: 0; font-size: 12px; color: var(--color-text-secondary); }
+  .dest-card .note { margin: 10px 0 0; font-size: 12px; color: var(--color-text-secondary); line-height: 1.55; padding: 8px 10px; background: var(--color-background-secondary); border-radius: var(--border-radius-md); }
+
+  .access-summary-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 0 0 1.25rem; }
+  .access-chart-grid { display: grid; grid-template-columns: 7fr 5fr; gap: 12px; margin: 0 0 1.25rem; }
+  .bar-row { display: grid; grid-template-columns: 210px 1fr 72px; gap: 10px; align-items: center; padding: 7px 0; border-bottom: 0.5px solid var(--color-border-tertiary); }
+  .bar-row:last-child { border-bottom: 0; }
+  .bar-label { font-size: 12px; line-height: 1.3; }
+  .bar-track { height: 12px; background: var(--color-background-secondary); border-radius: 4px; overflow: hidden; display: flex; }
+  .bar-base { background: #9fb8d8; height: 100%; }
+  .bar-scen { background: #3b6d11; height: 100%; }
+  .bar-value { font-size: 11.5px; color: var(--color-text-secondary); text-align: right; font-variant-numeric: tabular-nums; }
+  .delta-pill { display: inline-flex; min-width: 52px; justify-content: flex-end; font-variant-numeric: tabular-nums; }
+  .delta-pill.good { color: var(--color-text-success); }
+  .delta-pill.bad { color: var(--color-text-warning); }
+  .mini-note { font-size: 11.5px; color: var(--color-text-secondary); line-height: 1.5; margin: 8px 0 0; }
+  .table-scroll { overflow-x: auto; margin: 0 0 1.25rem; }
+  .table-scroll table.std { min-width: 900px; margin: 0; }
+
+  ol.method-steps { counter-reset: ms; list-style: none; padding-left: 0; margin: 8px 0 0; }
+  ol.method-steps li { counter-increment: ms; padding: 8px 0 8px 32px; position: relative; border-bottom: 0.5px solid var(--color-border-tertiary); font-size: 13px; line-height: 1.55; }
+  ol.method-steps li::before { content: counter(ms); position: absolute; left: 0; top: 8px; width: 22px; height: 22px; border-radius: 50%; background: var(--color-background-secondary); color: var(--color-text-primary); font-size: 11px; font-weight: 500; display: flex; align-items: center; justify-content: center; }
+  ol.method-steps li:last-child { border-bottom: 0; }
+
+  @media (max-width: 760px) {
+    .ds-grid, .caveat-grid, .glos-grid, .dest-grid, .access-summary-grid, .access-chart-grid { grid-template-columns: 1fr; }
+    .bar-row { grid-template-columns: 1fr; gap: 5px; }
+    .bar-value { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="header-row">
+  <div style="min-width: 0;">
+    <h1>CityLink scenario briefing dashboard</h1>
+    <p class="subtitle">CityLink frequency increase scenario from the BMORE BUS plan, page 15.</p>
+  </div>
+  <span class="chip info" style="white-space: nowrap; flex-shrink: 0; margin-top: 6px;">
+    <i class="ti ti-versions" aria-hidden="true"></i>Review draft
+  </span>
+</div>
+
+<div class="tab-strip" role="tablist" aria-label="Dashboard tabs">
+  <button class="tab-btn active" role="tab" aria-selected="true" data-tab="t1" onclick="showTab('t1')">1. Executive brief</button>
+  <button class="tab-btn" role="tab" data-tab="t2" onclick="showTab('t2')">2. Where benefits occur</button>
+  <button class="tab-btn" role="tab" data-tab="t3" onclick="showTab('t3')">3. Access to key destinations</button>
+  <button class="tab-btn" role="tab" data-tab="t4" onclick="showTab('t4')">4. Who benefits</button>
+  <button class="tab-btn" role="tab" data-tab="t5" onclick="showTab('t5')">5. Methods, caveats, diagnostics</button>
+</div>
+
+<!-- ============ TAB 1: EXECUTIVE BRIEF ============ -->
+<section class="tab-panel active" data-tab="t1" role="tabpanel" aria-label="Executive brief">
+
+  <div class="ds-box" id="dataset-version">
+    <div class="ds-head">
+      <span><i class="ti ti-versions" style="font-size: 15px; vertical-align: -2px; margin-right: 6px;" aria-hidden="true"></i>Dataset version</span>
+      <span class="chip neutral">working model run</span>
+    </div>
+    <div class="ds-grid">
+      <div class="row"><p class="k">Trip source</p><p class="v">BMC/MPO 2019 model walk-to-transit trips</p></div>
+      <div class="row"><p class="k">Selection rule</p><p class="v">same trip set routed through current network and CityLink scenario</p></div>
+      <div class="row"><p class="k">Submitted trips (current set)</p><p class="v">40,701</p></div>
+      <div class="row"><p class="k">Access assumption</p><p class="v">walk-to-transit only</p></div>
+      <div class="row"><p class="k">Geography filter</p><p class="v">Baltimore-region model trips</p></div>
+      <div class="row"><p class="k">Baseline GTFS</p><p class="v">MTA May 2026</p></div>
+      <div class="row"><p class="k">Scenario GTFS</p><p class="v">MTA May 2026 + BMORE BUS CityLink frequency overlay</p></div>
+      <div class="row"><p class="k">Routing settings</p><p class="v">walk access, scheduled transit, looser walk/transfer thresholds</p></div>
+      <div class="row"><p class="k">Dashboard update</p><p class="v">May 13, 2026</p></div>
+    </div>
+  </div>
+
+  <div style="display: grid; grid-template-columns: 5fr 7fr; gap: 12px; margin: 0 0 1.25rem;">
+    <div class="raised">
+      <p class="section-label">What was tested</p>
+      <ul style="font-size: 13px;">
+        <li>Baseline: May 2026 MTA GTFS network</li>
+        <li>Scenario: BMORE BUS CityLink frequency overlay on CityLink routes</li>
+        <li>Demand held fixed across both runs</li>
+        <li>Routing-based scenario screen - not a ridership or demand-response forecast</li>
+      </ul>
+    </div>
+    <div class="raised">
+      <p class="section-label">What changed in the scenario</p>
+      <ul style="font-size: 13px;">
+        <li>RED: 8-min weekday daytime headway</li>
+        <li>Other selected CityLink routes: 10-min weekday daytime headway</li>
+        <li>Weekend daytime: 15-min headways</li>
+        <li>Overnight: 30-min headways</li>
+        <li>Route alignments, demand, and service coverage unchanged</li>
+      </ul>
+    </div>
+  </div>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 0 0 1.25rem;">
+    <div>
+      <p class="pane-head">Baseline  -  May 2026 MTA GTFS</p>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+        <div class="kpi"><p class="label">Submitted trips</p><p class="value">40,701</p></div>
+        <div class="kpi"><p class="label">Routed</p><p class="value">33,220</p></div>
+        <div class="kpi" style="grid-column: span 2;"><p class="label">Unrouted</p><p class="value">7,481</p><p class="foot">No valid scheduled path under current routing settings - not automatically a service gap. See Tab 5.</p></div>
+        <div class="kpi" style="grid-column: span 2;"><p class="label">Routing success</p><p class="value">81.6%</p></div>
+      </div>
+    </div>
+    <div>
+      <p class="pane-head">CityLink frequency scenario</p>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+        <div class="kpi"><p class="label">Scenario routed</p><p class="value">33,226</p></div>
+        <div class="kpi"><p class="label">Routed in both</p><p class="value">33,214</p></div>
+        <div class="kpi"><p class="label">Newly routable</p><p class="value">12</p></div>
+        <div class="kpi"><p class="label">Lost vs. baseline</p><p class="value">6</p></div>
+        <div class="kpi emphasis" style="grid-column: span 2;"><p class="label">Net newly routable</p><p class="value">+6 trips</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background: var(--color-background-secondary); border-radius: var(--border-radius-lg); padding: 16px 18px; margin: 0 0 1.25rem;">
+    <p class="section-label" style="margin: 0 0 12px;">Headline result  -  travel-time change (scenario - baseline)</p>
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+      <div>
+        <p style="font-size: 26px; font-weight: 500; margin: 0;"><span style="color: var(--color-text-success);">-0.6</span> min</p>
+        <p style="font-size: 12px; color: var(--color-text-secondary); margin: 4px 0 0;">Mean delta (approx.)</p>
+      </div>
+      <div>
+        <p style="font-size: 26px; font-weight: 500; margin: 0; color: var(--color-text-success);">1,276</p>
+        <p style="font-size: 12px; color: var(--color-text-secondary); margin: 4px 0 0;">Improved 5+ min</p>
+      </div>
+      <div>
+        <p style="font-size: 26px; font-weight: 500; margin: 0; color: var(--color-text-warning);">54</p>
+        <p style="font-size: 12px; color: var(--color-text-secondary); margin: 4px 0 0;">Worsened 5+ min</p>
+      </div>
+    </div>
+  </div>
+
+  <div style="display: grid; grid-template-columns: 7fr 5fr; gap: 16px; margin: 0 0 1rem;">
+    <div style="background: var(--color-background-info); border: 0.5px solid var(--color-border-info); border-radius: var(--border-radius-lg); padding: 14px 16px;">
+      <p class="section-label" style="color: var(--color-text-info);">Main takeaway</p>
+      <p style="font-size: 14px; line-height: 1.55; margin: 0; color: var(--color-text-info);">CityLink frequency changes do not transform the network average. They reduce waiting for the subset of trips that use or sit near CityLink service. Most trips do not change; 1,276 trips improve by at least 5 minutes.</p>
+    </div>
+    <div class="raised">
+      <p class="section-label">What this scenario does not answer</p>
+      <ul style="font-size: 12.5px;">
+        <li>Does not estimate new ridership</li>
+        <li>Does not model mode-choice response</li>
+        <li>Does not change route coverage</li>
+        <li>Does not change service span beyond stated headways</li>
+        <li>Does not diagnose all unrouted trips yet</li>
+        <li>Does not include bus congestion feedback</li>
+      </ul>
+    </div>
+  </div>
+
+  <p class="footer-line">Source: BALTOSim routing engine. Baseline GTFS: MTA May 2026. Scenario: BMORE BUS CityLink frequency overlay. Numbers shown on this tab are from the current trip sample; see Dataset version.</p>
+</section>
+
+<!-- ============ TAB 2: WHERE BENEFITS OCCUR ============ -->
+<section class="tab-panel" data-tab="t2" role="tabpanel" aria-label="Where benefits occur">
+
+  <div class="info-banner">
+    <p class="lead">Benefits are concentrated in the subset of trips that use or sit near CityLink service.</p>
+    <p class="body">Whole-network averages dilute the signal. Two separate filters are reported here - they are not the same population.</p>
+  </div>
+
+  <div class="raised" style="margin: 0 0 1.25rem;">
+    <p class="pane-head"><i class="ti ti-filter" style="font-size: 15px;" aria-hidden="true"></i>Defining "CityLink-exposed"</p>
+    <p style="font-size: 13px; margin: 0 0 10px; color: var(--color-text-secondary);">These are two different definitions. Reporting them separately avoids overlap and double-counting confusion.</p>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+      <div style="background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 12px 14px;">
+        <p style="font-size: 13px; font-weight: 500; margin: 0 0 4px;">A  -  Near CityLink stop</p>
+        <p style="font-size: 12.5px; color: var(--color-text-secondary); margin: 0; line-height: 1.55;">Trip's origin or destination is within one-quarter mile of at least one CityLink stop.</p>
+      </div>
+      <div style="background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 12px 14px;">
+        <p style="font-size: 13px; font-weight: 500; margin: 0 0 4px;">B  -  Routed on CityLink</p>
+        <p style="font-size: 12.5px; color: var(--color-text-secondary); margin: 0; line-height: 1.55;">Trip's baseline OR scenario routed path actually uses at least one CityLink route segment.</p>
+      </div>
+    </div>
+    <p style="font-size: 11.5px; color: var(--color-text-secondary); margin: 10px 0 0; line-height: 1.55;">The headline metrics below are reported for the union of A and B, which captures trips near CityLink stops or actually using CityLink routes.</p>
+  </div>
+
+  <p class="pane-head">CityLink-exposed subset  -  headline metrics</p>
+  <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 8px;">
+    <div class="kpi">
+      <p class="label">Exposed submitted</p>
+      <p class="value">26,596</p>
+      <p class="foot">share of current 40,701 sample</p>
+    </div>
+    <div class="kpi">
+      <p class="label">Exposed both-routed</p>
+      <p class="value">25,298</p>
+      <p class="foot">routed in baseline and scenario</p>
+    </div>
+    <div class="kpi">
+      <p class="label">Improvement rate (exposed)</p>
+      <p class="value">4.9%</p>
+      <p class="foot">1,231 / 25,298 improved 5+ min</p>
+    </div>
+  </div>
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 1.5rem;">
+    <div class="kpi">
+      <p class="label">Improved 5+ min in exposed</p>
+      <p class="value" style="color: var(--color-text-success);">1,231 trips</p>
+      <p class="foot">96.5% of all 1,276 improved trips fall in the exposed subset</p>
+    </div>
+    <div class="kpi">
+      <p class="label">Mean wait-time delta (exposed)</p>
+      <p class="value" style="color: var(--color-text-success);">-0.66 min</p>
+    </div>
+  </div>
+
+  <div class="raised" style="margin: -0.5rem 0 1.25rem;">
+    <p class="pane-head"><i class="ti ti-clock-check" style="font-size: 15px;" aria-hidden="true"></i>Time saved by improved trips</p>
+    <p class="mini-note">Among trips improving by at least 5 minutes, the average travel-time saving is 14.5 minutes and the average wait-time saving is 14.1 minutes. The CityLink signal is therefore small in the network average, but meaningful for the trips that benefit.</p>
+  </div>
+
+  <div class="raised" style="margin: 0 0 1rem;">
+    <p class="pane-head"><i class="ti ti-route" style="font-size: 15px;" aria-hidden="true"></i>Per-route breakdown by CityLink route</p>
+    <p class="mini-note">A trip is counted for a route if its baseline or scenario path uses that CityLink route. Route rows are not additive because one trip can use more than one CityLink line.</p>
+    <div class="table-scroll">
+      <table class="std">
+        <thead><tr><th>Route</th><th class="num">Exposed trips</th><th class="num">Improved 5+</th><th class="num">Worsened 5+</th><th class="num">Mean time delta</th><th class="num">Mean wait delta</th></tr></thead>
+        <tbody>
+          <tr><td>CityLink Pink</td><td class="num">1,102</td><td class="num">350</td><td class="num">7</td><td class="num">-3.82</td><td class="num">-3.55</td></tr>
+          <tr><td>CityLink Red</td><td class="num">1,789</td><td class="num">247</td><td class="num">13</td><td class="num">-2.22</td><td class="num">-2.13</td></tr>
+          <tr><td>CityLink Green</td><td class="num">875</td><td class="num">243</td><td class="num">13</td><td class="num">-4.43</td><td class="num">-4.11</td></tr>
+          <tr><td>CityLink Navy</td><td class="num">1,030</td><td class="num">215</td><td class="num">5</td><td class="num">-3.98</td><td class="num">-3.85</td></tr>
+          <tr><td>CityLink Yellow</td><td class="num">671</td><td class="num">136</td><td class="num">5</td><td class="num">-2.88</td><td class="num">-2.74</td></tr>
+          <tr><td>CityLink Gold</td><td class="num">778</td><td class="num">123</td><td class="num">8</td><td class="num">-2.53</td><td class="num">-2.39</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="raised" style="margin: 0 0 1rem;">
+    <p class="pane-head"><i class="ti ti-clock-hour-4" style="font-size: 15px;" aria-hidden="true"></i>Time of day</p>
+    <div class="table-scroll">
+      <table class="std">
+        <thead><tr><th>Period</th><th class="num">Both-routed</th><th class="num">Improved 5+</th><th class="num">Worsened 5+</th><th class="num">Mean wait delta</th></tr></thead>
+        <tbody>
+          <tr><td>AM peak</td><td class="num">9,988</td><td class="num">323</td><td class="num">10</td><td class="num">-0.40</td></tr>
+          <tr><td>Midday</td><td class="num">7,276</td><td class="num">295</td><td class="num">17</td><td class="num">-0.39</td></tr>
+          <tr><td>PM peak</td><td class="num">9,878</td><td class="num">274</td><td class="num">11</td><td class="num">-0.44</td></tr>
+          <tr><td>Evening</td><td class="num">3,850</td><td class="num">330</td><td class="num">11</td><td class="num">-1.40</td></tr>
+          <tr><td>Overnight</td><td class="num">2,222</td><td class="num">54</td><td class="num">5</td><td class="num">-0.53</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="raised" style="margin: 0 0 1rem;">
+    <p class="pane-head"><i class="ti ti-chart-bar" style="font-size: 15px;" aria-hidden="true"></i>Wait-time change buckets</p>
+    <div class="table-scroll">
+      <table class="std">
+        <thead><tr><th>Bucket</th><th class="num">Improved trips</th><th class="num">Worsened trips</th></tr></thead>
+        <tbody>
+          <tr><td>0-5 min wait change</td><td class="num">53</td><td class="num">7</td></tr>
+          <tr><td>5-10 min</td><td class="num">627</td><td class="num">3</td></tr>
+          <tr><td>10-15 min</td><td class="num">211</td><td class="num">6</td></tr>
+          <tr><td>15-20 min</td><td class="num">101</td><td class="num">3</td></tr>
+          <tr><td>20-30 min</td><td class="num">136</td><td class="num">11</td></tr>
+          <tr><td>30+ min</td><td class="num">134</td><td class="num">18</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="mini-note">Rows show wait savings for improved trips and wait penalties for worsened trips.</p>
+  </div>
+
+  <p class="footer-line">"CityLink-exposed" is the union of filter A (near CityLink stop) and filter B (routed on CityLink) under the working definition. Filter-A and filter-B-only breakdowns will be added when reconciled.</p>
+</section>
+
+<!-- ============ TAB 3: ACCESS TO KEY DESTINATIONS ============ -->
+<section class="tab-panel" data-tab="t3" role="tabpanel" aria-label="Access to key destinations">
+
+  <div class="info-banner">
+    <p class="lead">This tab shows how the CityLink frequency scenario affects access to major job centers, health care, colleges, and temporary school locations.</p>
+    <p class="body">Some of these destinations are not well represented in the 2019 trip table, so the screen tests whether the same study-area origins can reach each place in the current network and in the CityLink frequency scenario.</p>
+  </div>
+
+  <div class="access-summary-grid">
+    <div class="kpi"><p class="label">OD tests routed</p><p class="value">62,280</p><p class="foot">1,384 origins x 9 destinations x 5 period/direction tests</p></div>
+    <div class="kpi"><p class="label">Scenario routability</p><p class="value">30,927</p><p class="foot">+1,600 net routed tests vs. baseline</p></div>
+    <div class="kpi"><p class="label">Newly routable</p><p class="value" style="color: var(--color-text-success);">2,143</p><p class="foot">Lost routing: 543</p></div>
+    <div class="kpi"><p class="label">60-minute access</p><p class="value">6 of 9</p><p class="foot">destinations gain reachable OD-period tests</p></div>
+  </div>
+
+  <div class="raised" style="margin: 0 0 1.25rem;">
+    <p class="pane-head"><i class="ti ti-route" style="font-size: 15px;" aria-hidden="true"></i>How to read this access test</p>
+    <ol class="method-steps">
+      <li>Start with 1,384 study-area model zones used in the CityLink explorer.</li>
+      <li>Route each origin to the priority destinations during common school, work, and return periods.</li>
+      <li>Compare the current network with the CityLink frequency scenario using the same origins and destinations.</li>
+      <li>Use the results to identify which destinations and time periods need a closer map review.</li>
+    </ol>
+    <p class="mini-note">This is an accessibility screen, not a demand forecast. It answers whether important places are reachable under each network, even when the 2019 trip table has too few trips to newer job centers.</p>
+  </div>
+
+  <div class="access-chart-grid">
+    <div class="raised">
+      <p class="pane-head"><i class="ti ti-clock-check" style="font-size: 15px;" aria-hidden="true"></i>Reachable within 60 minutes</p>
+      <div class="bar-row"><div class="bar-label">Morgan State University</div><div class="bar-track"><div class="bar-base" style="width: 45.7%;"></div><div class="bar-scen" style="width: 4.3%;"></div></div><div class="bar-value">+66</div></div>
+      <div class="bar-row"><div class="bar-label">Johns Hopkins East Baltimore</div><div class="bar-track"><div class="bar-base" style="width: 80.2%;"></div><div class="bar-scen" style="width: 1.8%;"></div></div><div class="bar-value">+28</div></div>
+      <div class="bar-row"><div class="bar-label">University of Baltimore</div><div class="bar-track"><div class="bar-base" style="width: 71.0%;"></div><div class="bar-scen" style="width: 0.8%;"></div></div><div class="bar-value">+12</div></div>
+      <div class="bar-row"><div class="bar-label">TradePoint Atlantic</div><div class="bar-track"><div class="bar-base" style="width: 9.7%;"></div><div class="bar-scen" style="width: 0.5%;"></div></div><div class="bar-value">+8</div></div>
+      <div class="bar-row"><div class="bar-label">SSA / CMS Woodlawn</div><div class="bar-track"><div class="bar-base" style="width: 10.7%;"></div><div class="bar-scen" style="width: 0.3%;"></div></div><div class="bar-value">+4</div></div>
+      <div class="bar-row"><div class="bar-label">BWI Marshall Airport</div><div class="bar-track"><div class="bar-base" style="width: 5.6%;"></div><div class="bar-scen" style="width: 0.1%;"></div></div><div class="bar-value">+2</div></div>
+      <div class="bar-row"><div class="bar-label">UMMC / UMB downtown</div><div class="bar-track"><div class="bar-base" style="width: 81.9%;"></div></div><div class="bar-value">-6</div></div>
+      <div class="bar-row"><div class="bar-label">Northwest High School</div><div class="bar-track"><div class="bar-base" style="width: 45.4%;"></div></div><div class="bar-value">-14</div></div>
+      <div class="bar-row"><div class="bar-label">Downtown Baltimore CBD</div><div class="bar-track"><div class="bar-base" style="width: 95.8%;"></div></div><div class="bar-value">-48</div></div>
+      <p class="mini-note">The negative rows are mostly trips that still route but cross just above the 60-minute cutoff. Downtown is mainly AM inbound first-bus timing: demand is held fixed, but the scenario path search sometimes finds a later first useful bus. In the 72 Downtown AM cases that cross over 60 minutes, initial wait rises by a median of 14 minutes and an average of 16 minutes. A schedule check finds only a small subset that clearly missed the previous departure by less than 3 minutes, so this should be described as longer first-bus wait rather than proven near-miss boarding. Northwest is mainly Metro/bus connection timing; UMMC/UMB shows more path churn, added transfers, and higher PM-return waits.</p>
+    </div>
+
+    <div class="raised">
+      <p class="pane-head"><i class="ti ti-arrows-exchange" style="font-size: 15px;" aria-hidden="true"></i>Routability tradeoff</p>
+      <div class="kpi" style="margin-bottom: 8px;"><p class="label">Baseline routed</p><p class="value">29,327</p></div>
+      <div class="kpi" style="margin-bottom: 8px;"><p class="label">Scenario routed</p><p class="value">30,927</p><p class="foot">+1,600 net OD-period tests</p></div>
+      <div class="kpi" style="margin-bottom: 8px;"><p class="label">Improved / worsened 5+ min</p><p class="value"><span style="color: var(--color-text-success);">3,271</span> / <span style="color: var(--color-text-warning);">2,722</span></p></div>
+      <p class="mini-note">The scenario creates a net gain in routable access tests and expands the number of origins that can reach several priority destinations. Where results are mixed, the dashboard points to specific time periods and destinations for follow-up rather than treating the average as the whole story.</p>
+    </div>
+  </div>
+
+  <div class="raised" style="margin: 0 0 1.25rem;">
+    <p class="pane-head"><i class="ti ti-chart-histogram" style="font-size: 15px;" aria-hidden="true"></i>Travel-time change distribution for priority destinations</p>
+    <div class="table-scroll">
+      <table class="std">
+        <thead><tr><th>Change bucket among both-routed tests</th><th class="num">OD-period tests</th></tr></thead>
+        <tbody>
+          <tr><td>30+ minutes faster</td><td class="num">916</td></tr>
+          <tr><td>15-30 minutes faster</td><td class="num">856</td></tr>
+          <tr><td>5-15 minutes faster</td><td class="num">1,417</td></tr>
+          <tr><td>Within 5 minutes</td><td class="num">22,873</td></tr>
+          <tr><td>5-15 minutes slower</td><td class="num">737</td></tr>
+          <tr><td>15-30 minutes slower</td><td class="num">689</td></tr>
+          <tr><td>30+ minutes slower</td><td class="num">1,296</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <p class="pane-head">Per-destination results</p>
+  <div class="table-scroll">
+  <table class="std">
+    <thead>
+      <tr>
+        <th>Destination</th>
+        <th class="num">Baseline routed</th>
+        <th class="num">Scenario routed</th>
+        <th class="num">Net routed</th>
+        <th class="num">60-min change</th>
+        <th class="num">Improved 5+</th>
+        <th class="num">Worsened 5+</th>
+        <th class="num">Mean delta</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>TradePoint Atlantic</td><td class="num">3,277</td><td class="num">3,416</td><td class="num">+139</td><td class="num">+8</td><td class="num">259</td><td class="num">137</td><td class="num">-0.95</td></tr>
+      <tr><td>Johns Hopkins East Baltimore</td><td class="num">3,685</td><td class="num">3,961</td><td class="num">+276</td><td class="num">+28</td><td class="num">291</td><td class="num">200</td><td class="num">+0.03</td></tr>
+      <tr><td>University of Baltimore</td><td class="num">3,723</td><td class="num">4,090</td><td class="num">+367</td><td class="num">+12</td><td class="num">935</td><td class="num">723</td><td class="num">+1.15</td></tr>
+      <tr><td>Northwest High School</td><td class="num">3,392</td><td class="num">3,468</td><td class="num">+76</td><td class="num">-14</td><td class="num">216</td><td class="num">149</td><td class="num">-0.66</td></tr>
+      <tr><td>Downtown Baltimore CBD</td><td class="num">3,830</td><td class="num">4,148</td><td class="num">+318</td><td class="num">-48</td><td class="num">333</td><td class="num">345</td><td class="num">+1.05</td></tr>
+      <tr><td>BWI Marshall Airport</td><td class="num">1,892</td><td class="num">1,903</td><td class="num">+11</td><td class="num">+2</td><td class="num">132</td><td class="num">118</td><td class="num">-0.28</td></tr>
+      <tr><td>SSA / CMS Woodlawn</td><td class="num">2,537</td><td class="num">2,540</td><td class="num">+3</td><td class="num">+4</td><td class="num">332</td><td class="num">367</td><td class="num">+0.87</td></tr>
+      <tr><td>UMMC / UMB downtown</td><td class="num">3,664</td><td class="num">3,960</td><td class="num">+296</td><td class="num">-6</td><td class="num">308</td><td class="num">362</td><td class="num">+2.04</td></tr>
+      <tr><td>Morgan State University</td><td class="num">3,327</td><td class="num">3,441</td><td class="num">+114</td><td class="num">+66</td><td class="num">465</td><td class="num">321</td><td class="num">+1.37</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="dest-grid">
+    <div class="dest-card">
+      <span class="cat"><i class="ti ti-briefcase" style="font-size: 15px;" aria-hidden="true"></i>CMTA focus</span>
+      <p class="nm">TradePoint Atlantic</p>
+      <p class="sub">Scenario routes 139 more OD tests; 60-minute access rises by 8 tests.</p>
+      <p class="note">Late-return trips show the strongest travel-time improvement, while AM and midday inbound tests still need transfer/wait-time diagnosis.</p>
+    </div>
+    <div class="dest-card">
+      <span class="cat"><i class="ti ti-heart-rate-monitor" style="font-size: 15px;" aria-hidden="true"></i>CMTA focus</span>
+      <p class="nm">Johns Hopkins East Baltimore</p>
+      <p class="sub">Scenario routes 276 more OD tests; 60-minute access rises by 28 tests.</p>
+      <p class="note">Travel-time change is essentially neutral on average, but the routability gain is meaningful enough to map by origin.</p>
+    </div>
+    <div class="dest-card">
+      <span class="cat"><i class="ti ti-school" style="font-size: 15px;" aria-hidden="true"></i>CMTA focus</span>
+      <p class="nm">University of Baltimore</p>
+      <p class="sub">Largest newly routable count among the listed destinations: +367 net routed tests.</p>
+      <p class="note">This also has many improved and worsened trips, so the temporary-school story should be shown by origin and period.</p>
+    </div>
+    <div class="dest-card">
+      <span class="cat"><i class="ti ti-school" style="font-size: 15px;" aria-hidden="true"></i>CMTA focus</span>
+      <p class="nm">Northwest High School</p>
+      <p class="sub">Scenario routes 76 more OD tests, but 60-minute access falls by 14 tests.</p>
+      <p class="note">This directly supports CMTA's concern: Northwest should be tested explicitly with school-specific origins and time windows.</p>
+    </div>
+  </div>
+
+</section>
+<!-- ============ TAB 4: WHO BENEFITS ============ -->
+<section class="tab-panel" data-tab="t4" role="tabpanel" aria-label="Who benefits">
+
+  <div class="info-banner">
+    <p class="lead">The frequency scenario helps most clearly where trips touch CityLink service, but the equity question is whether those gains reach the communities CMTA cares about.</p>
+    <p class="body">This tab starts with geography and time-of-day screens that are already available from the routed sample. They are trip-weighted screening results, not final person-level equity findings.</p>
+  </div>
+
+  <div class="access-summary-grid">
+    <div class="kpi"><p class="label">Transit-desert origin trips</p><p class="value">8,399</p><p class="foot">from the current trip sample</p></div>
+    <div class="kpi"><p class="label">Transit-desert improved 5+</p><p class="value" style="color: var(--color-text-success);">371</p><p class="foot">14 worsened by 5+ minutes</p></div>
+    <div class="kpi"><p class="label">Transit-desert mean change</p><p class="value" style="color: var(--color-text-success);">-0.66 min</p><p class="foot">both-routed trips</p></div>
+    <div class="kpi"><p class="label">Evening mean wait change</p><p class="value" style="color: var(--color-text-success);">-1.40 min</p><p class="foot">largest period-level wait gain</p></div>
+  </div>
+
+  <div class="raised" style="margin: 0 0 1.25rem;">
+    <p class="pane-head"><i class="ti ti-map-pin" style="font-size: 15px;" aria-hidden="true"></i>Transit-desert screen</p>
+    <p class="mini-note">Transit desert tracts are census tracts where transit vulnerability exceeds available transit access, identified using a hybrid method that combines relative/spatial underservice with absolute minimum-service failures. Use this as a screening layer, then confirm any claim with maps.</p>
+    <div style="background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 12px 14px; margin: 0 0 12px;">
+      <p style="font-size: 13px; font-weight: 500; margin: 0 0 6px;">How we define a transit desert</p>
+      <p style="font-size: 12.5px; color: var(--color-text-secondary); margin: 0; line-height: 1.55;">The method compares demand and supply by tract: transit gap = transit vulnerability index (TVI) minus composite public transit accessibility (CPTA). A tract is flagged when it is in a high-gap spatial cluster or high-demand/low-supply quadrant, or when it fails at least three minimum-service thresholds and has above-median latent vulnerability.</p>
+    </div>
+    <div class="table-scroll">
+      <table class="std">
+        <thead><tr><th>Origin group</th><th class="num">Submitted trips</th><th class="num">Scenario routed</th><th class="num">Improved 5+</th><th class="num">Worsened 5+</th><th class="num">Mean time delta</th><th class="num">Scenario unrouted</th></tr></thead>
+        <tbody>
+          <tr><td>Transit-desert origins</td><td class="num">8,399</td><td class="num">7,939</td><td class="num">371</td><td class="num">14</td><td class="num">-0.66</td><td class="num">5.5%</td></tr>
+          <tr><td>Other origins</td><td class="num">32,302</td><td class="num">25,287</td><td class="num">905</td><td class="num">40</td><td class="num">-0.53</td><td class="num">21.7%</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div style="display: grid; grid-template-columns: 1fr; gap: 12px; margin: 0 0 1.25rem;">
+    <div class="raised">
+      <p class="pane-head"><i class="ti ti-clock-hour-4" style="font-size: 15px;" aria-hidden="true"></i>When benefits show up</p>
+      <div class="table-scroll">
+        <table class="std">
+          <thead><tr><th>Period</th><th class="num">Improved 5+</th><th class="num">Worsened 5+</th><th class="num">Mean travel-time delta</th><th class="num">Scenario unrouted</th></tr></thead>
+          <tbody>
+            <tr><td>AM peak</td><td class="num">323</td><td class="num">10</td><td class="num">-0.42</td><td class="num">19.1%</td></tr>
+            <tr><td>Midday</td><td class="num">295</td><td class="num">17</td><td class="num">-0.42</td><td class="num">16.6%</td></tr>
+            <tr><td>PM peak</td><td class="num">274</td><td class="num">11</td><td class="num">-0.45</td><td class="num">17.9%</td></tr>
+            <tr><td>Evening</td><td class="num">330</td><td class="num">11</td><td class="num">-1.47</td><td class="num">19.0%</td></tr>
+            <tr><td>Overnight</td><td class="num">54</td><td class="num">5</td><td class="num">-0.51</td><td class="num">21.8%</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="raised">
+      <p class="pane-head"><i class="ti ti-users" style="font-size: 15px;" aria-hidden="true"></i>Race summary</p>
+      <div class="table-scroll">
+        <table class="std">
+          <thead><tr><th>Trip group</th><th class="num">Submitted</th><th class="num">Scenario routed</th><th class="num">Improved 5+</th><th class="num">Worsened 5+</th><th class="num">Mean delta</th></tr></thead>
+          <tbody>
+            <tr><td>Non-white</td><td class="num">25,921</td><td class="num">20,796</td><td class="num">815</td><td class="num">31</td><td class="num">-0.58</td></tr>
+            <tr><td>White</td><td class="num">14,780</td><td class="num">12,430</td><td class="num">461</td><td class="num">23</td><td class="num">-0.53</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="pane-head" style="margin-top: 14px;"><i class="ti ti-wallet" style="font-size: 15px;" aria-hidden="true"></i>Income summary</p>
+      <div class="table-scroll">
+        <table class="std">
+          <thead><tr><th>Trip group</th><th class="num">Submitted</th><th class="num">Improved 5+</th><th class="num">Worsened 5+</th><th class="num">Mean delta</th></tr></thead>
+          <tbody>
+            <tr><td>Very low</td><td class="num">9,412</td><td class="num">345</td><td class="num">15</td><td class="num">-0.56</td></tr>
+            <tr><td>Low</td><td class="num">5,650</td><td class="num">181</td><td class="num">9</td><td class="num">-0.52</td></tr>
+            <tr><td>Moderate</td><td class="num">6,719</td><td class="num">209</td><td class="num">12</td><td class="num">-0.59</td></tr>
+            <tr><td>High</td><td class="num">8,740</td><td class="num">272</td><td class="num">8</td><td class="num">-0.61</td></tr>
+            <tr><td>Very high</td><td class="num">10,180</td><td class="num">269</td><td class="num">10</td><td class="num">-0.52</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="mini-note">These are trip-weighted summaries from the model sample. Use them as screening results, not person-level equity findings.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TAB 5: METHODS, CAVEATS, DIAGNOSTICS ============ -->
+<section class="tab-panel" data-tab="t5" role="tabpanel" aria-label="Methods, caveats, diagnostics">
+
+  <div class="warn-banner">
+    <i class="ti ti-shield-exclamation ic" aria-hidden="true"></i>
+    <div>
+      <p class="ttl">These results are useful for scenario screening, but they are not a full ridership forecast or final public finding.</p>
+      <p class="bd">Read the caveats below before quoting any number to an external audience. The Dataset version box on Tab 1 documents the data behind the current run.</p>
+    </div>
+  </div>
+
+  <p class="pane-head"><i class="ti ti-list" style="font-size: 15px;" aria-hidden="true"></i>Caveats</p>
+  <div class="caveat-grid">
+    <div class="caveat-card">
+      <i class="ti ti-circle-1 ic" aria-hidden="true"></i>
+      <div>
+        <p class="ttl">Static demand</p>
+        <p class="bd">The same trip set is routed through both networks. The model does not change rider behavior, mode choice, destination choice, or trip-making rates in response to better service.</p>
+      </div>
+    </div>
+    <div class="caveat-card">
+      <i class="ti ti-circle-2 ic" aria-hidden="true"></i>
+      <div>
+        <p class="ttl">Router-only comparison</p>
+        <p class="bd">Outputs reflect what a transit router can find on the published schedule. No congestion feedback, no bus-bunching, no real-world reliability adjustment.</p>
+      </div>
+    </div>
+    <div class="caveat-card">
+      <i class="ti ti-circle-3 ic" aria-hidden="true"></i>
+      <div>
+        <p class="ttl">2019 demand  -  2026 GTFS</p>
+        <p class="bd">Demand snapshot pre-dates the GTFS network used for routing. Trip patterns may have shifted since 2019; treat the OD set as a representative sample, not a current census.</p>
+      </div>
+    </div>
+    <div class="caveat-card">
+      <i class="ti ti-circle-4 ic" aria-hidden="true"></i>
+      <div>
+        <p class="ttl">Unrouted != confirmed service gap</p>
+        <p class="bd">"Unrouted" means the router found no valid scheduled path under current settings. It does not automatically mean the trip is impossible - walk distance limits, transfer rules, and time-window settings can all drive non-routes.</p>
+      </div>
+    </div>
+    <div class="caveat-card">
+      <i class="ti ti-circle-5 ic" aria-hidden="true"></i>
+      <div>
+        <p class="ttl">Use unrouted trips as review flags</p>
+        <p class="bd">When a trip is unrouted, the next step is to inspect the origin, destination, time window, walk access, transfer rules, and nearby service. The dashboard should not assign a single cause without that follow-up review.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="raised" style="margin: 1.5rem 0 1.25rem;">
+    <p class="pane-head"><i class="ti ti-vocabulary" style="font-size: 15px;" aria-hidden="true"></i>Definitions</p>
+    <div class="glos-grid">
+      <div>
+        <div class="glos-group">
+          <p class="gh">Trip lifecycle</p>
+          <table class="glos">
+            <tbody>
+              <tr><td class="term">Submitted</td><td>The walk-to-transit OD pairs we attempt to route in both networks. Current set: 40,701.</td></tr>
+              <tr><td class="term">Routed</td><td>A trip for which the router found a valid scheduled path.</td></tr>
+              <tr><td class="term">Unrouted</td><td>A trip for which no valid scheduled path was found under current settings.</td></tr>
+              <tr><td class="term">Both-routed</td><td>Trip routed in baseline and scenario - the comparable subset for delta-time stats.</td></tr>
+              <tr><td class="term">Newly routable</td><td>Routed in scenario only.</td></tr>
+              <tr><td class="term">Lost routing</td><td>Routed in baseline only.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="glos-group">
+          <p class="gh">Outcomes</p>
+          <table class="glos">
+            <tbody>
+              <tr><td class="term">Improved / Worsened</td><td>Travel-time change of at least 5 min in the improvement / worsening direction.</td></tr>
+              <tr><td class="term">Failure rate</td><td>Share of submitted trips that are unrouted.</td></tr>
+              <tr><td class="term">Average transfers</td><td>Mean number of transit transfers per routed trip.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div>
+        <div class="glos-group">
+          <p class="gh">Scope</p>
+          <table class="glos">
+            <tbody>
+              <tr><td class="term">CityLink-exposed</td><td>Union of "near CityLink stop" (filter A) and "routed on CityLink" (filter B). See Tab 2.</td></tr>
+              <tr><td class="term">Walk-to-transit</td><td>Only access mode currently modeled. Drive-and-ride and bike-and-ride are out of scope under the present access assumption.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="glos-group">
+          <p class="gh">Methodology</p>
+          <table class="glos">
+            <tbody>
+              <tr><td class="term">Trip-weighted</td><td>Each trip counts once, regardless of rider. Default in this dashboard.</td></tr>
+              <tr><td class="term">Person-weighted</td><td>Aggregated to unique riders. Requires demographic linkage. Not yet wired. Do not cite trip-weighted breakdowns as person-level findings.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="raised" style="margin: 0 0 1.25rem;">
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+      <p class="pane-head" style="margin: 0;"><i class="ti ti-clock-cog" style="font-size: 15px;" aria-hidden="true"></i>Headway specification - baseline -> scenario</p>
+      <span class="chip info"><i class="ti ti-check" aria-hidden="true"></i>scenario targets added</span>
+    </div>
+    <p style="font-size: 12.5px; color: var(--color-text-secondary); margin: 0 0 10px; line-height: 1.55;">The scenario applies the BMORE BUS CityLink frequency targets while keeping route coverage and demand fixed. Baseline headways come from the May 2026 GTFS schedules used by the router.</p>
+    <div class="table-scroll">
+      <table class="std">
+        <thead><tr><th>Service group</th><th>Baseline</th><th>CityLink frequency scenario</th></tr></thead>
+        <tbody>
+          <tr><td>CityLink Red, weekday daytime</td><td>May 2026 scheduled headway</td><td>8-minute headway</td></tr>
+          <tr><td>Other selected CityLink routes, weekday daytime</td><td>May 2026 scheduled headway</td><td>10-minute headway</td></tr>
+          <tr><td>Selected CityLink routes, weekend daytime</td><td>May 2026 scheduled headway</td><td>15-minute headway</td></tr>
+          <tr><td>Selected CityLink routes, overnight</td><td>May 2026 scheduled headway</td><td>30-minute headway</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="raised" style="margin: 0 0 1.25rem;">
+    <p class="pane-head"><i class="ti ti-stethoscope" style="font-size: 15px;" aria-hidden="true"></i>Diagnostics &amp; validation</p>
+    <div class="diag-row">
+      <i class="ti ti-arrows-shuffle ic" aria-hidden="true"></i>
+      <div>
+        <p class="ttl">Mode-sequence diagnostics</p>
+        <p class="bd">Walk-to-transit sequences only. Drive-and-ride, bike-and-ride, and transit-to-walk loops are not modeled. Trips with no plausible walk access may fail in both networks for reasons unrelated to frequency.</p>
+      </div>
+      <span class="chip neutral">scope-limited</span>
+    </div>
+    <div class="diag-row">
+      <i class="ti ti-map-2 ic" aria-hidden="true"></i>
+      <div>
+        <p class="ttl">Transit desert layer</p>
+        <p class="bd">Transit-desert tracts are defined where transit vulnerability exceeds transit access, using a hybrid method that combines relative/spatial underservice with absolute minimum-service failures. Use as a screening geography for Tab 4.</p>
+      </div>
+      <span class="chip info">documented method</span>
+    </div>
+    <div class="diag-row">
+      <i class="ti ti-database-search ic" aria-hidden="true"></i>
+      <div>
+        <p class="ttl">Data QA</p>
+        <p class="bd">Demand snapshot: BMC/MPO 2019 walk-to-transit OD pairs. The 6 trips that route in baseline only should be reviewed individually before describing them as service losses.</p>
+      </div>
+      <span class="chip neutral">review item</span>
+    </div>
+  </div>
+
+  <p class="footer-line">This tab is the canonical reference for definitions and limits used across tabs 1-4. The Dataset version box on Tab 1 documents the data behind the current run.</p>
+</section>
+
+</div>
+
+<script>
+function showTab(id) {
+  document.querySelectorAll('.tab-btn').forEach(function(b) {
+    var on = b.getAttribute('data-tab') === id;
+    b.classList.toggle('active', on);
+    b.setAttribute('aria-selected', on ? 'true' : 'false');
+  });
+  document.querySelectorAll('.tab-panel').forEach(function(p) {
+    p.classList.toggle('active', p.getAttribute('data-tab') === id);
+  });
+  if (window.scrollTo) window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
+}
+</script>
+</body>
+</html>
+
+
