@@ -132,6 +132,55 @@
   .delta-pill { display: inline-flex; min-width: 52px; justify-content: flex-end; font-variant-numeric: tabular-nums; }
   .delta-pill.good { color: var(--color-text-success); }
   .delta-pill.bad { color: var(--color-text-warning); }
+  .route-card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 12px 0 0; }
+  .route-card { background: var(--color-background-secondary); border-radius: var(--border-radius-lg); padding: 14px; display: grid; grid-template-columns: 112px 1fr; gap: 12px; align-items: center; min-height: 164px; }
+  .route-card.feature { background: var(--color-background-success); border: 0.5px solid #c9ddb2; }
+  .route-name { font-size: 13px; font-weight: 500; margin: 0 0 2px; }
+  .route-exposed { font-size: 11.5px; color: var(--color-text-secondary); font-variant-numeric: tabular-nums; }
+  .route-ring { width: 96px; height: 96px; border-radius: 50%; display: grid; place-items: center; background: conic-gradient(var(--color-text-success) var(--pct), var(--color-background-primary) 0); }
+  .route-ring-inner { width: 68px; height: 68px; border-radius: 50%; background: var(--color-background-secondary); display: grid; place-items: center; text-align: center; line-height: 1.08; }
+  .route-card.feature .route-ring-inner { background: var(--color-background-success); }
+  .route-ring-inner strong { font-size: 16px; font-weight: 600; color: var(--color-text-success); font-variant-numeric: tabular-nums; }
+  .route-ring-inner span { display: block; font-size: 9.5px; color: var(--color-text-secondary); margin-top: 2px; }
+  .route-card-body { display: grid; gap: 8px; min-width: 0; }
+  .route-card-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .route-mini { background: var(--color-background-primary); border-radius: var(--border-radius-md); padding: 7px 8px; }
+  .route-mini .k { font-size: 10.5px; color: var(--color-text-secondary); margin: 0 0 2px; }
+  .route-mini .v { font-size: 12.5px; font-weight: 500; color: var(--color-text-primary); margin: 0; font-variant-numeric: tabular-nums; }
+  .route-mini .v.good { color: var(--color-text-success); }
+  .route-mini .v.warn { color: var(--color-text-warning); }
+  .tod-impact-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin: 12px 0 0; }
+  .tod-impact-card { background: var(--color-background-secondary); border-radius: var(--border-radius-lg); padding: 14px 12px; min-height: 218px; display: grid; grid-template-rows: auto 1fr auto; gap: 10px; }
+  .tod-impact-card.emphasis { background: var(--color-background-success); border: 0.5px solid #c9ddb2; }
+  .tod-period { font-size: 13px; font-weight: 500; margin: 0 0 2px; }
+  .tod-volume { font-size: 11.5px; color: var(--color-text-secondary); font-variant-numeric: tabular-nums; }
+  .tod-bubble-wrap { min-height: 92px; display: flex; align-items: center; justify-content: center; }
+  .tod-bubble { border-radius: 50%; background: var(--color-text-success); color: #fff; display: flex; align-items: center; justify-content: center; flex-direction: column; line-height: 1.1; box-shadow: inset 0 0 0 1px rgba(255,255,255,.32); }
+  .tod-bubble .n { font-size: 17px; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .tod-bubble .l { font-size: 10px; opacity: .9; }
+  .tod-mini-stats { display: grid; gap: 6px; }
+  .tod-stat { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 11.5px; color: var(--color-text-secondary); }
+  .tod-stat strong { color: var(--color-text-primary); font-weight: 500; font-variant-numeric: tabular-nums; }
+  .tod-loss-dot { display: inline-flex; width: 9px; height: 9px; border-radius: 50%; background: var(--color-text-warning); margin-right: 5px; vertical-align: -1px; }
+  .tod-wait-pill { display: inline-flex; align-items: center; justify-content: center; width: 100%; border-radius: 6px; background: var(--color-background-primary); color: var(--color-text-success); padding: 6px 8px; font-size: 13px; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .bucket-dist { margin: 12px 0 0; }
+  .bucket-strip { display: flex; height: 34px; border-radius: 7px; overflow: hidden; background: var(--color-background-secondary); margin: 0 0 10px; }
+  .bucket-seg { display: flex; align-items: center; justify-content: center; min-width: 30px; color: #fff; font-size: 11px; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .bucket-seg.s1 { background: #8fb66b; }
+  .bucket-seg.s2 { background: #2f6d32; }
+  .bucket-seg.s3 { background: #4f8a3f; }
+  .bucket-seg.s4 { background: #6c9c4d; }
+  .bucket-seg.s5 { background: #7ba857; }
+  .bucket-seg.s6 { background: #628f45; }
+  .bucket-tile-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; }
+  .bucket-tile { background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 10px; min-height: 116px; display: grid; gap: 8px; }
+  .bucket-tile.feature { background: var(--color-background-success); border: 0.5px solid #c9ddb2; }
+  .bucket-label { font-size: 13px; font-weight: 500; margin: 0; }
+  .bucket-sub { font-size: 11px; color: var(--color-text-secondary); margin: 2px 0 0; }
+  .bucket-big { font-size: 21px; font-weight: 600; color: var(--color-text-success); margin: 0; font-variant-numeric: tabular-nums; line-height: 1.1; }
+  .bucket-big span { display: block; font-size: 10.5px; font-weight: 400; color: var(--color-text-secondary); margin-top: 2px; }
+  .bucket-loss { display: flex; align-items: center; justify-content: space-between; gap: 6px; font-size: 11.5px; color: var(--color-text-secondary); border-top: 0.5px solid var(--color-border-tertiary); padding-top: 7px; }
+  .bucket-loss strong { color: var(--color-text-warning); font-variant-numeric: tabular-nums; }
   .mini-note { font-size: 11.5px; color: var(--color-text-secondary); line-height: 1.5; margin: 8px 0 0; }
   .table-scroll { overflow-x: auto; margin: 0 0 1.25rem; }
   .table-scroll table.std { min-width: 900px; margin: 0; }
@@ -145,6 +194,12 @@
     .ds-grid, .caveat-grid, .glos-grid, .dest-grid, .access-summary-grid, .access-chart-grid { grid-template-columns: 1fr; }
     .bar-row { grid-template-columns: 1fr; gap: 5px; }
     .bar-value { text-align: left; }
+    .route-card-grid { grid-template-columns: 1fr; }
+    .route-card { grid-template-columns: 96px 1fr; }
+    .tod-impact-grid { grid-template-columns: 1fr; }
+    .tod-impact-card { min-height: 0; }
+    .bucket-tile-grid { grid-template-columns: 1fr 1fr; }
+    .bucket-strip { height: 28px; }
   }
 </style>
 </head>
@@ -335,53 +390,160 @@
   <div class="raised" style="margin: 0 0 1rem;">
     <p class="pane-head"><i class="ti ti-route" style="font-size: 15px;" aria-hidden="true"></i>Per-route breakdown by CityLink route</p>
     <p class="mini-note">A trip is counted for a route if its baseline or scenario path uses that CityLink route. Route rows are not additive because one trip can use more than one CityLink line.</p>
-    <div class="table-scroll">
-      <table class="std">
-        <thead><tr><th>Route</th><th class="num">Exposed trips</th><th class="num">Improved 5+</th><th class="num">Worsened 5+</th><th class="num">Mean time delta</th><th class="num">Mean wait delta</th></tr></thead>
-        <tbody>
-          <tr><td>CityLink Pink</td><td class="num">1,102</td><td class="num">350</td><td class="num">7</td><td class="num">-3.82</td><td class="num">-3.55</td></tr>
-          <tr><td>CityLink Red</td><td class="num">1,789</td><td class="num">247</td><td class="num">13</td><td class="num">-2.22</td><td class="num">-2.13</td></tr>
-          <tr><td>CityLink Green</td><td class="num">875</td><td class="num">243</td><td class="num">13</td><td class="num">-4.43</td><td class="num">-4.11</td></tr>
-          <tr><td>CityLink Navy</td><td class="num">1,030</td><td class="num">215</td><td class="num">5</td><td class="num">-3.98</td><td class="num">-3.85</td></tr>
-          <tr><td>CityLink Yellow</td><td class="num">671</td><td class="num">136</td><td class="num">5</td><td class="num">-2.88</td><td class="num">-2.74</td></tr>
-          <tr><td>CityLink Gold</td><td class="num">778</td><td class="num">123</td><td class="num">8</td><td class="num">-2.53</td><td class="num">-2.39</td></tr>
-        </tbody>
-      </table>
+    <div class="route-card-grid" role="img" aria-label="Route impact cards. Each circle shows the share of exposed trips on that route that improved by at least five minutes.">
+      <div class="route-card feature">
+        <div class="route-ring" style="--pct: 31.8%;"><div class="route-ring-inner"><strong>31.8%</strong><span>improved</span></div></div>
+        <div class="route-card-body">
+          <div><p class="route-name">CityLink Pink</p><p class="route-exposed">350 of 1,102 exposed trips improved</p></div>
+          <div class="route-card-stats"><div class="route-mini"><p class="k">Worsened</p><p class="v warn">7</p></div><div class="route-mini"><p class="k">Mean wait</p><p class="v good">-3.55 min</p></div><div class="route-mini"><p class="k">Mean time</p><p class="v good">-3.82 min</p></div><div class="route-mini"><p class="k">Exposed</p><p class="v">1,102</p></div></div>
+        </div>
+      </div>
+      <div class="route-card">
+        <div class="route-ring" style="--pct: 13.8%;"><div class="route-ring-inner"><strong>13.8%</strong><span>improved</span></div></div>
+        <div class="route-card-body">
+          <div><p class="route-name">CityLink Red</p><p class="route-exposed">247 of 1,789 exposed trips improved</p></div>
+          <div class="route-card-stats"><div class="route-mini"><p class="k">Worsened</p><p class="v warn">13</p></div><div class="route-mini"><p class="k">Mean wait</p><p class="v good">-2.13 min</p></div><div class="route-mini"><p class="k">Mean time</p><p class="v good">-2.22 min</p></div><div class="route-mini"><p class="k">Exposed</p><p class="v">1,789</p></div></div>
+        </div>
+      </div>
+      <div class="route-card feature">
+        <div class="route-ring" style="--pct: 27.8%;"><div class="route-ring-inner"><strong>27.8%</strong><span>improved</span></div></div>
+        <div class="route-card-body">
+          <div><p class="route-name">CityLink Green</p><p class="route-exposed">243 of 875 exposed trips improved</p></div>
+          <div class="route-card-stats"><div class="route-mini"><p class="k">Worsened</p><p class="v warn">13</p></div><div class="route-mini"><p class="k">Mean wait</p><p class="v good">-4.11 min</p></div><div class="route-mini"><p class="k">Mean time</p><p class="v good">-4.43 min</p></div><div class="route-mini"><p class="k">Exposed</p><p class="v">875</p></div></div>
+        </div>
+      </div>
+      <div class="route-card">
+        <div class="route-ring" style="--pct: 20.9%;"><div class="route-ring-inner"><strong>20.9%</strong><span>improved</span></div></div>
+        <div class="route-card-body">
+          <div><p class="route-name">CityLink Navy</p><p class="route-exposed">215 of 1,030 exposed trips improved</p></div>
+          <div class="route-card-stats"><div class="route-mini"><p class="k">Worsened</p><p class="v warn">5</p></div><div class="route-mini"><p class="k">Mean wait</p><p class="v good">-3.85 min</p></div><div class="route-mini"><p class="k">Mean time</p><p class="v good">-3.98 min</p></div><div class="route-mini"><p class="k">Exposed</p><p class="v">1,030</p></div></div>
+        </div>
+      </div>
+      <div class="route-card">
+        <div class="route-ring" style="--pct: 20.3%;"><div class="route-ring-inner"><strong>20.3%</strong><span>improved</span></div></div>
+        <div class="route-card-body">
+          <div><p class="route-name">CityLink Yellow</p><p class="route-exposed">136 of 671 exposed trips improved</p></div>
+          <div class="route-card-stats"><div class="route-mini"><p class="k">Worsened</p><p class="v warn">5</p></div><div class="route-mini"><p class="k">Mean wait</p><p class="v good">-2.74 min</p></div><div class="route-mini"><p class="k">Mean time</p><p class="v good">-2.88 min</p></div><div class="route-mini"><p class="k">Exposed</p><p class="v">671</p></div></div>
+        </div>
+      </div>
+      <div class="route-card">
+        <div class="route-ring" style="--pct: 15.8%;"><div class="route-ring-inner"><strong>15.8%</strong><span>improved</span></div></div>
+        <div class="route-card-body">
+          <div><p class="route-name">CityLink Gold</p><p class="route-exposed">123 of 778 exposed trips improved</p></div>
+          <div class="route-card-stats"><div class="route-mini"><p class="k">Worsened</p><p class="v warn">8</p></div><div class="route-mini"><p class="k">Mean wait</p><p class="v good">-2.39 min</p></div><div class="route-mini"><p class="k">Mean time</p><p class="v good">-2.53 min</p></div><div class="route-mini"><p class="k">Exposed</p><p class="v">778</p></div></div>
+        </div>
+      </div>
     </div>
+    <p class="mini-note">Each circle uses exposed trips as the denominator. Pink and Green are highlighted because they have the highest improved share among the listed CityLink routes.</p>
   </div>
 
   <div class="raised" style="margin: 0 0 1rem;">
     <p class="pane-head"><i class="ti ti-clock-hour-4" style="font-size: 15px;" aria-hidden="true"></i>Time of day</p>
-    <div class="table-scroll">
-      <table class="std">
-        <thead><tr><th>Period</th><th class="num">Both-routed</th><th class="num">Improved 5+</th><th class="num">Worsened 5+</th><th class="num">Mean wait delta</th></tr></thead>
-        <tbody>
-          <tr><td>AM peak</td><td class="num">9,988</td><td class="num">323</td><td class="num">10</td><td class="num">-0.40</td></tr>
-          <tr><td>Midday</td><td class="num">7,276</td><td class="num">295</td><td class="num">17</td><td class="num">-0.39</td></tr>
-          <tr><td>PM peak</td><td class="num">9,878</td><td class="num">274</td><td class="num">11</td><td class="num">-0.44</td></tr>
-          <tr><td>Evening</td><td class="num">3,850</td><td class="num">330</td><td class="num">11</td><td class="num">-1.40</td></tr>
-          <tr><td>Overnight</td><td class="num">2,222</td><td class="num">54</td><td class="num">5</td><td class="num">-0.53</td></tr>
-        </tbody>
-      </table>
+    <div class="tod-impact-grid" role="img" aria-label="Small-multiple time-of-day impact cards. Bubble size shows improved trips; each card also lists both-routed trips, worsened trips, and mean wait delta.">
+      <div class="tod-impact-card">
+        <div>
+          <p class="tod-period">AM peak</p>
+          <p class="tod-volume">9,988 both-routed</p>
+        </div>
+        <div class="tod-bubble-wrap"><div class="tod-bubble" style="width: 78px; height: 78px;"><span class="n">323</span><span class="l">improved</span></div></div>
+        <div class="tod-mini-stats">
+          <div class="tod-stat"><span><span class="tod-loss-dot"></span>Worsened</span><strong>10</strong></div>
+          <div class="tod-wait-pill">-0.40 min wait</div>
+        </div>
+      </div>
+      <div class="tod-impact-card">
+        <div>
+          <p class="tod-period">Midday</p>
+          <p class="tod-volume">7,276 both-routed</p>
+        </div>
+        <div class="tod-bubble-wrap"><div class="tod-bubble" style="width: 74px; height: 74px;"><span class="n">295</span><span class="l">improved</span></div></div>
+        <div class="tod-mini-stats">
+          <div class="tod-stat"><span><span class="tod-loss-dot"></span>Worsened</span><strong>17</strong></div>
+          <div class="tod-wait-pill">-0.39 min wait</div>
+        </div>
+      </div>
+      <div class="tod-impact-card">
+        <div>
+          <p class="tod-period">PM peak</p>
+          <p class="tod-volume">9,878 both-routed</p>
+        </div>
+        <div class="tod-bubble-wrap"><div class="tod-bubble" style="width: 71px; height: 71px;"><span class="n">274</span><span class="l">improved</span></div></div>
+        <div class="tod-mini-stats">
+          <div class="tod-stat"><span><span class="tod-loss-dot"></span>Worsened</span><strong>11</strong></div>
+          <div class="tod-wait-pill">-0.44 min wait</div>
+        </div>
+      </div>
+      <div class="tod-impact-card emphasis">
+        <div>
+          <p class="tod-period">Evening</p>
+          <p class="tod-volume">3,850 both-routed</p>
+        </div>
+        <div class="tod-bubble-wrap"><div class="tod-bubble" style="width: 80px; height: 80px;"><span class="n">330</span><span class="l">improved</span></div></div>
+        <div class="tod-mini-stats">
+          <div class="tod-stat"><span><span class="tod-loss-dot"></span>Worsened</span><strong>11</strong></div>
+          <div class="tod-wait-pill">-1.40 min wait</div>
+        </div>
+      </div>
+      <div class="tod-impact-card">
+        <div>
+          <p class="tod-period">Overnight</p>
+          <p class="tod-volume">2,222 both-routed</p>
+        </div>
+        <div class="tod-bubble-wrap"><div class="tod-bubble" style="width: 42px; height: 42px;"><span class="n" style="font-size: 14px;">54</span><span class="l" style="font-size: 9px;">improved</span></div></div>
+        <div class="tod-mini-stats">
+          <div class="tod-stat"><span><span class="tod-loss-dot"></span>Worsened</span><strong>5</strong></div>
+          <div class="tod-wait-pill">-0.53 min wait</div>
+        </div>
+      </div>
     </div>
+    <p class="mini-note">Circle size shows the number of trips improving by 5+ minutes. Evening is highlighted because it combines the largest improved count with the strongest average wait-time reduction.</p>
   </div>
 
   <div class="raised" style="margin: 0 0 1rem;">
     <p class="pane-head"><i class="ti ti-chart-bar" style="font-size: 15px;" aria-hidden="true"></i>Wait-time change buckets</p>
-    <div class="table-scroll">
-      <table class="std">
-        <thead><tr><th>Bucket</th><th class="num">Improved trips</th><th class="num">Worsened trips</th></tr></thead>
-        <tbody>
-          <tr><td>0-5 min wait change</td><td class="num">53</td><td class="num">7</td></tr>
-          <tr><td>5-10 min</td><td class="num">627</td><td class="num">3</td></tr>
-          <tr><td>10-15 min</td><td class="num">211</td><td class="num">6</td></tr>
-          <tr><td>15-20 min</td><td class="num">101</td><td class="num">3</td></tr>
-          <tr><td>20-30 min</td><td class="num">136</td><td class="num">11</td></tr>
-          <tr><td>30+ min</td><td class="num">134</td><td class="num">18</td></tr>
-        </tbody>
-      </table>
+    <div class="bucket-dist" role="img" aria-label="Distribution strip showing the share of improved wait-time savings by bucket, with tile summaries for each bucket and worsened trip counts.">
+      <div class="bucket-strip" aria-hidden="true">
+        <div class="bucket-seg s1" style="width: 4.2%;">4%</div>
+        <div class="bucket-seg s2" style="width: 49.7%;">5-10 min</div>
+        <div class="bucket-seg s3" style="width: 16.7%;">17%</div>
+        <div class="bucket-seg s4" style="width: 8%;">8%</div>
+        <div class="bucket-seg s5" style="width: 10.8%;">11%</div>
+        <div class="bucket-seg s6" style="width: 10.6%;">11%</div>
+      </div>
+      <div class="bucket-tile-grid">
+        <div class="bucket-tile">
+          <div><p class="bucket-label">0-5 min</p><p class="bucket-sub">small wait change</p></div>
+          <p class="bucket-big">53<span>improved trips | 4.2%</span></p>
+          <div class="bucket-loss"><span>Worsened</span><strong>7</strong></div>
+        </div>
+        <div class="bucket-tile feature">
+          <div><p class="bucket-label">5-10 min</p><p class="bucket-sub">main cluster</p></div>
+          <p class="bucket-big">627<span>improved trips | 49.7%</span></p>
+          <div class="bucket-loss"><span>Worsened</span><strong>3</strong></div>
+        </div>
+        <div class="bucket-tile">
+          <div><p class="bucket-label">10-15 min</p><p class="bucket-sub">moderate gain</p></div>
+          <p class="bucket-big">211<span>improved trips | 16.7%</span></p>
+          <div class="bucket-loss"><span>Worsened</span><strong>6</strong></div>
+        </div>
+        <div class="bucket-tile">
+          <div><p class="bucket-label">15-20 min</p><p class="bucket-sub">larger gain</p></div>
+          <p class="bucket-big">101<span>improved trips | 8.0%</span></p>
+          <div class="bucket-loss"><span>Worsened</span><strong>3</strong></div>
+        </div>
+        <div class="bucket-tile">
+          <div><p class="bucket-label">20-30 min</p><p class="bucket-sub">large gain</p></div>
+          <p class="bucket-big">136<span>improved trips | 10.8%</span></p>
+          <div class="bucket-loss"><span>Worsened</span><strong>11</strong></div>
+        </div>
+        <div class="bucket-tile">
+          <div><p class="bucket-label">30+ min</p><p class="bucket-sub">largest change</p></div>
+          <p class="bucket-big">134<span>improved trips | 10.6%</span></p>
+          <div class="bucket-loss"><span>Worsened</span><strong>18</strong></div>
+        </div>
+      </div>
     </div>
-    <p class="mini-note">Rows show wait savings for improved trips and wait penalties for worsened trips.</p>
+    <p class="mini-note">The strip shows the distribution of improved wait-time savings. Nearly half of the improved trips sit in the 5-10 minute bucket, while larger savings are split across the 10+ minute buckets. Worsened counts are listed as review flags, not part of the improved distribution.</p>
   </div>
 
   <p class="footer-line">"CityLink-exposed" is the union of filter A (near CityLink stop) and filter B (routed on CityLink) under the working definition. Filter-A and filter-B-only breakdowns will be added when reconciled.</p>
