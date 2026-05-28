@@ -84,6 +84,20 @@
   .ds-grid .row .k { font-size: 11px; color: var(--color-text-secondary); text-transform: lowercase; letter-spacing: 0.01em; margin: 0; }
   .ds-grid .row .v { font-size: 12.5px; margin: 1px 0 0; line-height: 1.4; }
   .ds-grid .row .v.pend { font-style: italic; color: var(--color-text-secondary); }
+  .scope-panel { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 16px 18px; margin: 0 0 1.25rem; }
+  .scope-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin: 0 0 14px; padding-bottom: 12px; border-bottom: 0.5px solid var(--color-border-tertiary); }
+  .scope-title { margin: 0 0 4px; font-size: 15px; font-weight: 600; }
+  .scope-sub { margin: 0; color: var(--color-text-secondary); font-size: 12.5px; line-height: 1.45; max-width: 760px; }
+  .scope-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 0 0 12px; }
+  .scope-item { background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 10px 11px; }
+  .scope-item .k { margin: 0 0 4px; color: var(--color-text-secondary); font-size: 11px; }
+  .scope-item .v { margin: 0; font-size: 13px; line-height: 1.35; }
+  .scope-callouts { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .scope-callout { border-radius: var(--border-radius-md); padding: 11px 12px; border: 0.5px solid var(--color-border-tertiary); }
+  .scope-callout.good { background: var(--color-background-info); border-color: var(--color-border-info); }
+  .scope-callout.warn { background: var(--color-background-warning); border-color: #e0bd83; }
+  .scope-callout .k { margin: 0 0 3px; font-size: 12px; font-weight: 600; }
+  .scope-callout .v { margin: 0; font-size: 12.5px; line-height: 1.45; color: var(--color-text-secondary); }
 
   table.std { width: 100%; border-collapse: collapse; font-size: 13px; }
   table.std th, table.std td { padding: 8px 8px; border-bottom: 0.5px solid var(--color-border-tertiary); text-align: left; vertical-align: middle; }
@@ -113,15 +127,60 @@
 
   .footer-line { font-size: 11px; color: var(--color-text-secondary); margin: 1rem 0 0; border-top: 0.5px solid var(--color-border-tertiary); padding-top: 10px; }
 
-  .dest-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 0 0 1.5rem; }
-  .dest-card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 14px 16px; }
-  .dest-card .cat { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; color: var(--color-text-secondary); }
-  .dest-card .nm { margin: 6px 0 2px; font-size: 15px; font-weight: 500; }
-  .dest-card .sub { margin: 0; font-size: 12px; color: var(--color-text-secondary); }
-  .dest-card .note { margin: 10px 0 0; font-size: 12px; color: var(--color-text-secondary); line-height: 1.55; padding: 8px 10px; background: var(--color-background-secondary); border-radius: var(--border-radius-md); }
-
   .access-summary-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 0 0 1.25rem; }
   .access-chart-grid { display: grid; grid-template-columns: 7fr 5fr; gap: 12px; margin: 0 0 1.25rem; }
+  .destination-section { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 16px; margin: 0 0 1.25rem; }
+  .destination-section-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin: 0 0 14px; padding-bottom: 12px; border-bottom: 0.5px solid var(--color-border-tertiary); }
+  .destination-section-title { margin: 0 0 4px; font-size: 15px; font-weight: 600; }
+  .destination-section-sub { margin: 0; color: var(--color-text-secondary); font-size: 12.5px; line-height: 1.45; max-width: 760px; }
+  .destination-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .destination-card { background: var(--color-background-secondary); border: 0.5px solid var(--color-border-tertiary); border-top: 4px solid var(--color-text-success); border-radius: var(--border-radius-lg); padding: 13px 14px; display: grid; gap: 10px; }
+  .destination-card.flag { border-color: #d5b36d; border-top-color: var(--color-text-warning); background: #fbf5e7; }
+  .destination-name { font-size: 13px; font-weight: 500; margin: 0; }
+  .destination-routed { font-size: 11.5px; color: var(--color-text-secondary); margin: 2px 0 0; font-variant-numeric: tabular-nums; }
+  .destination-topline { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .destination-pill { background: var(--color-background-primary); border-radius: var(--border-radius-md); padding: 8px 9px; }
+  .destination-pill .k { font-size: 10.5px; color: var(--color-text-secondary); margin: 0 0 2px; }
+  .destination-pill .v { font-size: 14px; font-weight: 600; margin: 0; font-variant-numeric: tabular-nums; }
+  .destination-pill .v.good { color: var(--color-text-success); }
+  .destination-pill .v.bad { color: var(--color-text-warning); }
+  .destination-balance { display: grid; grid-template-columns: 1fr auto 1fr; gap: 7px; align-items: center; }
+  .destination-balance .metric { background: var(--color-background-primary); border-radius: var(--border-radius-md); padding: 7px 8px; }
+  .destination-balance .metric .k { font-size: 10.5px; color: var(--color-text-secondary); margin: 0 0 2px; }
+  .destination-balance .metric .v { font-size: 13px; font-weight: 500; font-variant-numeric: tabular-nums; margin: 0; }
+  .destination-balance .metric.good .v { color: var(--color-text-success); }
+  .destination-balance .metric.warn .v { color: var(--color-text-warning); }
+  .destination-vs { color: var(--color-text-tertiary); font-size: 11px; font-weight: 600; }
+  .equity-controls { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 1rem; }
+  .equity-btn { border: 0.5px solid var(--color-border-secondary); background: var(--color-background-primary); color: var(--color-text-primary); border-radius: 6px; padding: 8px 11px; font: inherit; font-size: 12.5px; cursor: pointer; }
+  .equity-btn.active { background: var(--color-text-primary); color: #fff; border-color: var(--color-text-primary); }
+  .equity-panel { display: none; }
+  .equity-panel.active { display: block; }
+  .equity-layout { display: grid; grid-template-columns: 1fr; gap: 12px; align-items: stretch; margin: 0 0 1.25rem; }
+  .equity-map-card, .equity-summary-card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 14px 16px; }
+  .equity-map-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin: 0 0 10px; }
+  .equity-title { font-size: 13px; font-weight: 500; margin: 0 0 3px; }
+  .equity-caption { font-size: 11.5px; color: var(--color-text-secondary); margin: 0; line-height: 1.45; }
+  .screen-map { position: relative; min-height: 560px; border-radius: var(--border-radius-lg); overflow: hidden; background: #eef1ed; border: 0.5px solid var(--color-border-tertiary); }
+  .actual-zone-map { display: block; width: 100%; height: 560px; background: #eef1ed; }
+  .actual-zone-map .zone { stroke: rgba(255,255,255,.86); stroke-width: .65; vector-effect: non-scaling-stroke; }
+  .actual-zone-map .zone.has-gain { stroke: #2f6d32; stroke-width: 1.45; }
+  .actual-zone-map .route-line { fill: none; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2.25; vector-effect: non-scaling-stroke; opacity: .9; }
+  .actual-zone-map .study-label { fill: rgba(15,23,42,.68); font-size: 11px; font-weight: 600; letter-spacing: 0; }
+  .map-note { position: absolute; left: 16px; bottom: 14px; right: 16px; background: rgba(255,255,255,.9); border: 0.5px solid rgba(0,0,0,.06); border-radius: var(--border-radius-md); padding: 9px 10px; font-size: 11.5px; color: var(--color-text-secondary); line-height: 1.45; }
+  .map-legend { display: flex; flex-wrap: wrap; gap: 8px 12px; margin: 10px 0 0; font-size: 11.5px; color: var(--color-text-secondary); }
+  .legend-dot { display: inline-flex; width: 10px; height: 10px; border-radius: 3px; margin-right: 5px; vertical-align: -1px; border: 0.5px solid rgba(0,0,0,.12); }
+  .equity-stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 0 0 12px; }
+  .equity-stat { background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 10px; }
+  .equity-stat .k { color: var(--color-text-secondary); font-size: 11px; margin: 0 0 3px; }
+  .equity-stat .v { font-size: 18px; font-weight: 600; margin: 0; font-variant-numeric: tabular-nums; }
+  .equity-stat .v.good { color: var(--color-text-success); }
+  .equity-compare { display: grid; gap: 8px; }
+  .compare-row { display: grid; grid-template-columns: 120px 1fr 72px; gap: 8px; align-items: center; }
+  .compare-label { font-size: 12px; }
+  .compare-track { height: 12px; background: var(--color-background-secondary); border-radius: 4px; overflow: hidden; }
+  .compare-fill { display: block; height: 100%; background: var(--color-text-success); border-radius: 4px; }
+  .compare-value { text-align: right; font-size: 11.5px; color: var(--color-text-secondary); font-variant-numeric: tabular-nums; }
   .bar-row { display: grid; grid-template-columns: 210px 1fr 72px; gap: 10px; align-items: center; padding: 7px 0; border-bottom: 0.5px solid var(--color-border-tertiary); }
   .bar-row:last-child { border-bottom: 0; }
   .bar-label { font-size: 12px; line-height: 1.3; }
@@ -133,14 +192,18 @@
   .delta-pill.good { color: var(--color-text-success); }
   .delta-pill.bad { color: var(--color-text-warning); }
   .route-card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 12px 0 0; }
-  .route-card { background: var(--color-background-secondary); border-radius: var(--border-radius-lg); padding: 14px; display: grid; grid-template-columns: 112px 1fr; gap: 12px; align-items: center; min-height: 164px; }
-  .route-card.feature { background: var(--color-background-success); border: 0.5px solid #c9ddb2; }
-  .route-name { font-size: 13px; font-weight: 500; margin: 0 0 2px; }
+  .route-card { --route: var(--color-text-success); --route-soft: var(--color-background-secondary); --route-border: var(--color-border-tertiary); background: var(--route-soft); border: 0.5px solid var(--route-border); border-left: 5px solid var(--route); border-radius: var(--border-radius-lg); padding: 14px; display: grid; grid-template-columns: 112px 1fr; gap: 12px; align-items: center; min-height: 164px; }
+  .route-card.route-pink { --route: #c12a7d; --route-soft: #f8e8f1; --route-border: #e7b8d1; }
+  .route-card.route-red { --route: #c7372f; --route-soft: #f9e7e5; --route-border: #e8b5b0; }
+  .route-card.route-green { --route: #2f7d32; --route-soft: #e8f3e8; --route-border: #b8d7b9; }
+  .route-card.route-navy { --route: #263f7f; --route-soft: #e7ebf6; --route-border: #b4bfdc; }
+  .route-card.route-yellow { --route: #c49a00; --route-soft: #fbf5da; --route-border: #e5d28c; }
+  .route-card.route-gold { --route: #a97812; --route-soft: #f8efd9; --route-border: #ddc58d; }
+  .route-name { font-size: 13px; font-weight: 600; margin: 0 0 2px; color: var(--route); }
   .route-exposed { font-size: 11.5px; color: var(--color-text-secondary); font-variant-numeric: tabular-nums; }
-  .route-ring { width: 96px; height: 96px; border-radius: 50%; display: grid; place-items: center; background: conic-gradient(var(--color-text-success) var(--pct), var(--color-background-primary) 0); }
-  .route-ring-inner { width: 68px; height: 68px; border-radius: 50%; background: var(--color-background-secondary); display: grid; place-items: center; text-align: center; line-height: 1.08; }
-  .route-card.feature .route-ring-inner { background: var(--color-background-success); }
-  .route-ring-inner strong { font-size: 16px; font-weight: 600; color: var(--color-text-success); font-variant-numeric: tabular-nums; }
+  .route-ring { width: 96px; height: 96px; border-radius: 50%; display: grid; place-items: center; background: conic-gradient(var(--route) var(--pct), rgba(255,255,255,.68) 0); }
+  .route-ring-inner { width: 68px; height: 68px; border-radius: 50%; background: var(--route-soft); display: grid; place-items: center; text-align: center; line-height: 1.08; }
+  .route-ring-inner strong { font-size: 16px; font-weight: 600; color: var(--route); font-variant-numeric: tabular-nums; }
   .route-ring-inner span { display: block; font-size: 9.5px; color: var(--color-text-secondary); margin-top: 2px; }
   .route-card-body { display: grid; gap: 8px; min-width: 0; }
   .route-card-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
@@ -191,7 +254,11 @@
   ol.method-steps li:last-child { border-bottom: 0; }
 
   @media (max-width: 760px) {
-    .ds-grid, .caveat-grid, .glos-grid, .dest-grid, .access-summary-grid, .access-chart-grid { grid-template-columns: 1fr; }
+    .ds-grid, .caveat-grid, .glos-grid, .access-summary-grid, .access-chart-grid, .destination-grid, .equity-layout, .equity-stat-grid, .scope-grid, .scope-callouts { grid-template-columns: 1fr; }
+    .screen-map { min-height: 360px; }
+    .actual-zone-map { height: 360px; }
+    .compare-row { grid-template-columns: 1fr; gap: 5px; }
+    .compare-value { text-align: left; }
     .bar-row { grid-template-columns: 1fr; gap: 5px; }
     .bar-value { text-align: left; }
     .route-card-grid { grid-template-columns: 1fr; }
@@ -227,21 +294,23 @@
 <!-- ============ TAB 1: EXECUTIVE BRIEF ============ -->
 <section class="tab-panel active" data-tab="t1" role="tabpanel" aria-label="Executive brief">
 
-  <div class="ds-box" id="dataset-version">
-    <div class="ds-head">
-      <span><i class="ti ti-versions" style="font-size: 15px; vertical-align: -2px; margin-right: 6px;" aria-hidden="true"></i>Dataset version</span>
-      <span class="chip neutral">working model run</span>
+  <div class="scope-panel" id="dataset-version">
+    <div class="scope-head">
+      <div>
+        <p class="scope-title"><i class="ti ti-clipboard-data" style="font-size: 16px; vertical-align: -2px; margin-right: 6px;" aria-hidden="true"></i>Study scope and interpretation</p>
+        <p class="scope-sub">This dashboard is a scenario-screening tool for stakeholder review. It compares the current May 2026 MTA schedule with a CityLink frequency overlay using the same modeled trip set.</p>
+      </div>
+      <span class="chip info">Review draft - May 13, 2026</span>
     </div>
-    <div class="ds-grid">
-      <div class="row"><p class="k">Trip source</p><p class="v">BMC/MPO 2019 model walk-to-transit trips</p></div>
-      <div class="row"><p class="k">Selection rule</p><p class="v">same trip set routed through current network and CityLink scenario</p></div>
-      <div class="row"><p class="k">Submitted trips (current set)</p><p class="v">40,701</p></div>
-      <div class="row"><p class="k">Access assumption</p><p class="v">walk-to-transit only</p></div>
-      <div class="row"><p class="k">Geography filter</p><p class="v">Baltimore-region model trips</p></div>
-      <div class="row"><p class="k">Baseline GTFS</p><p class="v">MTA May 2026</p></div>
-      <div class="row"><p class="k">Scenario GTFS</p><p class="v">MTA May 2026 + BMORE BUS CityLink frequency overlay</p></div>
-      <div class="row"><p class="k">Routing settings</p><p class="v">walk access, scheduled transit, looser walk/transfer thresholds</p></div>
-      <div class="row"><p class="k">Dashboard update</p><p class="v">May 13, 2026</p></div>
+    <div class="scope-grid">
+      <div class="scope-item"><p class="k">Question answered</p><p class="v">Where could more frequent CityLink service reduce travel or wait time?</p></div>
+      <div class="scope-item"><p class="k">Comparison</p><p class="v">Current May 2026 MTA GTFS vs. BMORE BUS CityLink frequency overlay</p></div>
+      <div class="scope-item"><p class="k">Trip basis</p><p class="v">40,701 BMC/MPO 2019 walk-to-transit model trips</p></div>
+      <div class="scope-item"><p class="k">Demand assumption</p><p class="v">Demand, route coverage, and trip origins/destinations are held fixed</p></div>
+    </div>
+    <div class="scope-callouts">
+      <div class="scope-callout good"><p class="k">Appropriate use</p><p class="v">Use these results to identify promising corridors, destinations, time periods, and equity screens for follow-up review.</p></div>
+      <div class="scope-callout warn"><p class="k">Important limit</p><p class="v">This is not a ridership forecast, final equity finding, or public claim about service gaps. Unrouted trips require case-by-case diagnosis.</p></div>
     </div>
   </div>
 
@@ -252,7 +321,6 @@
         <li>Baseline: May 2026 MTA GTFS network</li>
         <li>Scenario: BMORE BUS CityLink frequency overlay on CityLink routes</li>
         <li>Demand held fixed across both runs</li>
-        <li>Routing-based scenario screen - not a ridership or demand-response forecast</li>
       </ul>
     </div>
     <div class="raised">
@@ -262,7 +330,6 @@
         <li>Other selected CityLink routes: 10-min weekday daytime headway</li>
         <li>Weekend daytime: 15-min headways</li>
         <li>Overnight: 30-min headways</li>
-        <li>Route alignments, demand, and service coverage unchanged</li>
       </ul>
     </div>
   </div>
@@ -325,7 +392,7 @@
     </div>
   </div>
 
-  <p class="footer-line">Source: BALTOSim routing engine. Baseline GTFS: MTA May 2026. Scenario: BMORE BUS CityLink frequency overlay. Numbers shown on this tab are from the current trip sample; see Dataset version.</p>
+  <p class="footer-line">Source: BALTOSim routing engine. Baseline GTFS: MTA May 2026. Scenario: BMORE BUS CityLink frequency overlay. Numbers shown on this tab are from the current trip sample; see Study scope and interpretation.</p>
 </section>
 
 <!-- ============ TAB 2: WHERE BENEFITS OCCUR ============ -->
@@ -391,42 +458,42 @@
     <p class="pane-head"><i class="ti ti-route" style="font-size: 15px;" aria-hidden="true"></i>Per-route breakdown by CityLink route</p>
     <p class="mini-note">A trip is counted for a route if its baseline or scenario path uses that CityLink route. Route rows are not additive because one trip can use more than one CityLink line.</p>
     <div class="route-card-grid" role="img" aria-label="Route impact cards. Each circle shows the share of exposed trips on that route that improved by at least five minutes.">
-      <div class="route-card feature">
+      <div class="route-card route-pink">
         <div class="route-ring" style="--pct: 31.8%;"><div class="route-ring-inner"><strong>31.8%</strong><span>improved</span></div></div>
         <div class="route-card-body">
           <div><p class="route-name">CityLink Pink</p><p class="route-exposed">350 of 1,102 exposed trips improved</p></div>
           <div class="route-card-stats"><div class="route-mini"><p class="k">Worsened</p><p class="v warn">7</p></div><div class="route-mini"><p class="k">Mean wait</p><p class="v good">-3.55 min</p></div><div class="route-mini"><p class="k">Mean time</p><p class="v good">-3.82 min</p></div><div class="route-mini"><p class="k">Exposed</p><p class="v">1,102</p></div></div>
         </div>
       </div>
-      <div class="route-card">
+      <div class="route-card route-red">
         <div class="route-ring" style="--pct: 13.8%;"><div class="route-ring-inner"><strong>13.8%</strong><span>improved</span></div></div>
         <div class="route-card-body">
           <div><p class="route-name">CityLink Red</p><p class="route-exposed">247 of 1,789 exposed trips improved</p></div>
           <div class="route-card-stats"><div class="route-mini"><p class="k">Worsened</p><p class="v warn">13</p></div><div class="route-mini"><p class="k">Mean wait</p><p class="v good">-2.13 min</p></div><div class="route-mini"><p class="k">Mean time</p><p class="v good">-2.22 min</p></div><div class="route-mini"><p class="k">Exposed</p><p class="v">1,789</p></div></div>
         </div>
       </div>
-      <div class="route-card feature">
+      <div class="route-card route-green">
         <div class="route-ring" style="--pct: 27.8%;"><div class="route-ring-inner"><strong>27.8%</strong><span>improved</span></div></div>
         <div class="route-card-body">
           <div><p class="route-name">CityLink Green</p><p class="route-exposed">243 of 875 exposed trips improved</p></div>
           <div class="route-card-stats"><div class="route-mini"><p class="k">Worsened</p><p class="v warn">13</p></div><div class="route-mini"><p class="k">Mean wait</p><p class="v good">-4.11 min</p></div><div class="route-mini"><p class="k">Mean time</p><p class="v good">-4.43 min</p></div><div class="route-mini"><p class="k">Exposed</p><p class="v">875</p></div></div>
         </div>
       </div>
-      <div class="route-card">
+      <div class="route-card route-navy">
         <div class="route-ring" style="--pct: 20.9%;"><div class="route-ring-inner"><strong>20.9%</strong><span>improved</span></div></div>
         <div class="route-card-body">
           <div><p class="route-name">CityLink Navy</p><p class="route-exposed">215 of 1,030 exposed trips improved</p></div>
           <div class="route-card-stats"><div class="route-mini"><p class="k">Worsened</p><p class="v warn">5</p></div><div class="route-mini"><p class="k">Mean wait</p><p class="v good">-3.85 min</p></div><div class="route-mini"><p class="k">Mean time</p><p class="v good">-3.98 min</p></div><div class="route-mini"><p class="k">Exposed</p><p class="v">1,030</p></div></div>
         </div>
       </div>
-      <div class="route-card">
+      <div class="route-card route-yellow">
         <div class="route-ring" style="--pct: 20.3%;"><div class="route-ring-inner"><strong>20.3%</strong><span>improved</span></div></div>
         <div class="route-card-body">
           <div><p class="route-name">CityLink Yellow</p><p class="route-exposed">136 of 671 exposed trips improved</p></div>
           <div class="route-card-stats"><div class="route-mini"><p class="k">Worsened</p><p class="v warn">5</p></div><div class="route-mini"><p class="k">Mean wait</p><p class="v good">-2.74 min</p></div><div class="route-mini"><p class="k">Mean time</p><p class="v good">-2.88 min</p></div><div class="route-mini"><p class="k">Exposed</p><p class="v">671</p></div></div>
         </div>
       </div>
-      <div class="route-card">
+      <div class="route-card route-gold">
         <div class="route-ring" style="--pct: 15.8%;"><div class="route-ring-inner"><strong>15.8%</strong><span>improved</span></div></div>
         <div class="route-card-body">
           <div><p class="route-name">CityLink Gold</p><p class="route-exposed">123 of 778 exposed trips improved</p></div>
@@ -434,7 +501,7 @@
         </div>
       </div>
     </div>
-    <p class="mini-note">Each circle uses exposed trips as the denominator. Pink and Green are highlighted because they have the highest improved share among the listed CityLink routes.</p>
+    <p class="mini-note">Each card uses the CityLink route color as its accent. The circle still uses exposed trips as the denominator, so the percentage is the share of that route's exposed trips that improved.</p>
   </div>
 
   <div class="raised" style="margin: 0 0 1rem;">
@@ -599,78 +666,70 @@
     </div>
   </div>
 
-  <div class="raised" style="margin: 0 0 1.25rem;">
-    <p class="pane-head"><i class="ti ti-chart-histogram" style="font-size: 15px;" aria-hidden="true"></i>Travel-time change distribution for priority destinations</p>
-    <div class="table-scroll">
-      <table class="std">
-        <thead><tr><th>Change bucket among both-routed tests</th><th class="num">OD-period tests</th></tr></thead>
-        <tbody>
-          <tr><td>30+ minutes faster</td><td class="num">916</td></tr>
-          <tr><td>15-30 minutes faster</td><td class="num">856</td></tr>
-          <tr><td>5-15 minutes faster</td><td class="num">1,417</td></tr>
-          <tr><td>Within 5 minutes</td><td class="num">22,873</td></tr>
-          <tr><td>5-15 minutes slower</td><td class="num">737</td></tr>
-          <tr><td>15-30 minutes slower</td><td class="num">689</td></tr>
-          <tr><td>30+ minutes slower</td><td class="num">1,296</td></tr>
-        </tbody>
-      </table>
+  <div class="destination-section">
+  <div class="destination-section-head">
+    <div>
+      <p class="destination-section-title"><i class="ti ti-map-pin-check" style="font-size: 16px; vertical-align: -2px; margin-right: 6px;" aria-hidden="true"></i>Per-destination results</p>
+      <p class="destination-section-sub">Scenario routing expands access for most priority destinations, but several destinations show mixed results and need closer time-period or origin review.</p>
+    </div>
+    <span class="chip warn">mixed signals flagged</span>
+  </div>
+  <div class="destination-grid" role="img" aria-label="Per-destination result cards showing net routed tests, 60-minute access change, improved and worsened tests, and mean delta.">
+    <div class="destination-card">
+      <div><p class="destination-name">TradePoint Atlantic</p><p class="destination-routed">3,277 baseline -> 3,416 scenario</p></div>
+      <div class="destination-topline"><div class="destination-pill"><p class="k">Net routed</p><p class="v good">+139</p></div><div class="destination-pill"><p class="k">60-min access</p><p class="v good">+8</p></div></div>
+      <div class="destination-balance"><div class="metric good"><p class="k">Improved 5+</p><p class="v">259</p></div><span class="destination-vs">vs</span><div class="metric warn"><p class="k">Worsened 5+</p><p class="v">137</p></div></div>
+      <div class="destination-pill"><p class="k">Mean delta</p><p class="v good">-0.95 min</p></div>
+    </div>
+    <div class="destination-card">
+      <div><p class="destination-name">Johns Hopkins East Baltimore</p><p class="destination-routed">3,685 baseline -> 3,961 scenario</p></div>
+      <div class="destination-topline"><div class="destination-pill"><p class="k">Net routed</p><p class="v good">+276</p></div><div class="destination-pill"><p class="k">60-min access</p><p class="v good">+28</p></div></div>
+      <div class="destination-balance"><div class="metric good"><p class="k">Improved 5+</p><p class="v">291</p></div><span class="destination-vs">vs</span><div class="metric warn"><p class="k">Worsened 5+</p><p class="v">200</p></div></div>
+      <div class="destination-pill"><p class="k">Mean delta</p><p class="v">+0.03 min</p></div>
+    </div>
+    <div class="destination-card">
+      <div><p class="destination-name">University of Baltimore</p><p class="destination-routed">3,723 baseline -> 4,090 scenario</p></div>
+      <div class="destination-topline"><div class="destination-pill"><p class="k">Net routed</p><p class="v good">+367</p></div><div class="destination-pill"><p class="k">60-min access</p><p class="v good">+12</p></div></div>
+      <div class="destination-balance"><div class="metric good"><p class="k">Improved 5+</p><p class="v">935</p></div><span class="destination-vs">vs</span><div class="metric warn"><p class="k">Worsened 5+</p><p class="v">723</p></div></div>
+      <div class="destination-pill"><p class="k">Mean delta</p><p class="v bad">+1.15 min</p></div>
+    </div>
+    <div class="destination-card flag">
+      <div><p class="destination-name">Northwest High School</p><p class="destination-routed">3,392 baseline -> 3,468 scenario</p></div>
+      <div class="destination-topline"><div class="destination-pill"><p class="k">Net routed</p><p class="v good">+76</p></div><div class="destination-pill"><p class="k">60-min access</p><p class="v bad">-14</p></div></div>
+      <div class="destination-balance"><div class="metric good"><p class="k">Improved 5+</p><p class="v">216</p></div><span class="destination-vs">vs</span><div class="metric warn"><p class="k">Worsened 5+</p><p class="v">149</p></div></div>
+      <div class="destination-pill"><p class="k">Mean delta</p><p class="v good">-0.66 min</p></div>
+    </div>
+    <div class="destination-card flag">
+      <div><p class="destination-name">Downtown Baltimore CBD</p><p class="destination-routed">3,830 baseline -> 4,148 scenario</p></div>
+      <div class="destination-topline"><div class="destination-pill"><p class="k">Net routed</p><p class="v good">+318</p></div><div class="destination-pill"><p class="k">60-min access</p><p class="v bad">-48</p></div></div>
+      <div class="destination-balance"><div class="metric good"><p class="k">Improved 5+</p><p class="v">333</p></div><span class="destination-vs">vs</span><div class="metric warn"><p class="k">Worsened 5+</p><p class="v">345</p></div></div>
+      <div class="destination-pill"><p class="k">Mean delta</p><p class="v bad">+1.05 min</p></div>
+    </div>
+    <div class="destination-card">
+      <div><p class="destination-name">BWI Marshall Airport</p><p class="destination-routed">1,892 baseline -> 1,903 scenario</p></div>
+      <div class="destination-topline"><div class="destination-pill"><p class="k">Net routed</p><p class="v good">+11</p></div><div class="destination-pill"><p class="k">60-min access</p><p class="v good">+2</p></div></div>
+      <div class="destination-balance"><div class="metric good"><p class="k">Improved 5+</p><p class="v">132</p></div><span class="destination-vs">vs</span><div class="metric warn"><p class="k">Worsened 5+</p><p class="v">118</p></div></div>
+      <div class="destination-pill"><p class="k">Mean delta</p><p class="v good">-0.28 min</p></div>
+    </div>
+    <div class="destination-card">
+      <div><p class="destination-name">SSA / CMS Woodlawn</p><p class="destination-routed">2,537 baseline -> 2,540 scenario</p></div>
+      <div class="destination-topline"><div class="destination-pill"><p class="k">Net routed</p><p class="v good">+3</p></div><div class="destination-pill"><p class="k">60-min access</p><p class="v good">+4</p></div></div>
+      <div class="destination-balance"><div class="metric good"><p class="k">Improved 5+</p><p class="v">332</p></div><span class="destination-vs">vs</span><div class="metric warn"><p class="k">Worsened 5+</p><p class="v">367</p></div></div>
+      <div class="destination-pill"><p class="k">Mean delta</p><p class="v bad">+0.87 min</p></div>
+    </div>
+    <div class="destination-card flag">
+      <div><p class="destination-name">UMMC / UMB downtown</p><p class="destination-routed">3,664 baseline -> 3,960 scenario</p></div>
+      <div class="destination-topline"><div class="destination-pill"><p class="k">Net routed</p><p class="v good">+296</p></div><div class="destination-pill"><p class="k">60-min access</p><p class="v bad">-6</p></div></div>
+      <div class="destination-balance"><div class="metric good"><p class="k">Improved 5+</p><p class="v">308</p></div><span class="destination-vs">vs</span><div class="metric warn"><p class="k">Worsened 5+</p><p class="v">362</p></div></div>
+      <div class="destination-pill"><p class="k">Mean delta</p><p class="v bad">+2.04 min</p></div>
+    </div>
+    <div class="destination-card">
+      <div><p class="destination-name">Morgan State University</p><p class="destination-routed">3,327 baseline -> 3,441 scenario</p></div>
+      <div class="destination-topline"><div class="destination-pill"><p class="k">Net routed</p><p class="v good">+114</p></div><div class="destination-pill"><p class="k">60-min access</p><p class="v good">+66</p></div></div>
+      <div class="destination-balance"><div class="metric good"><p class="k">Improved 5+</p><p class="v">465</p></div><span class="destination-vs">vs</span><div class="metric warn"><p class="k">Worsened 5+</p><p class="v">321</p></div></div>
+      <div class="destination-pill"><p class="k">Mean delta</p><p class="v bad">+1.37 min</p></div>
     </div>
   </div>
-
-  <p class="pane-head">Per-destination results</p>
-  <div class="table-scroll">
-  <table class="std">
-    <thead>
-      <tr>
-        <th>Destination</th>
-        <th class="num">Baseline routed</th>
-        <th class="num">Scenario routed</th>
-        <th class="num">Net routed</th>
-        <th class="num">60-min change</th>
-        <th class="num">Improved 5+</th>
-        <th class="num">Worsened 5+</th>
-        <th class="num">Mean delta</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td>TradePoint Atlantic</td><td class="num">3,277</td><td class="num">3,416</td><td class="num">+139</td><td class="num">+8</td><td class="num">259</td><td class="num">137</td><td class="num">-0.95</td></tr>
-      <tr><td>Johns Hopkins East Baltimore</td><td class="num">3,685</td><td class="num">3,961</td><td class="num">+276</td><td class="num">+28</td><td class="num">291</td><td class="num">200</td><td class="num">+0.03</td></tr>
-      <tr><td>University of Baltimore</td><td class="num">3,723</td><td class="num">4,090</td><td class="num">+367</td><td class="num">+12</td><td class="num">935</td><td class="num">723</td><td class="num">+1.15</td></tr>
-      <tr><td>Northwest High School</td><td class="num">3,392</td><td class="num">3,468</td><td class="num">+76</td><td class="num">-14</td><td class="num">216</td><td class="num">149</td><td class="num">-0.66</td></tr>
-      <tr><td>Downtown Baltimore CBD</td><td class="num">3,830</td><td class="num">4,148</td><td class="num">+318</td><td class="num">-48</td><td class="num">333</td><td class="num">345</td><td class="num">+1.05</td></tr>
-      <tr><td>BWI Marshall Airport</td><td class="num">1,892</td><td class="num">1,903</td><td class="num">+11</td><td class="num">+2</td><td class="num">132</td><td class="num">118</td><td class="num">-0.28</td></tr>
-      <tr><td>SSA / CMS Woodlawn</td><td class="num">2,537</td><td class="num">2,540</td><td class="num">+3</td><td class="num">+4</td><td class="num">332</td><td class="num">367</td><td class="num">+0.87</td></tr>
-      <tr><td>UMMC / UMB downtown</td><td class="num">3,664</td><td class="num">3,960</td><td class="num">+296</td><td class="num">-6</td><td class="num">308</td><td class="num">362</td><td class="num">+2.04</td></tr>
-      <tr><td>Morgan State University</td><td class="num">3,327</td><td class="num">3,441</td><td class="num">+114</td><td class="num">+66</td><td class="num">465</td><td class="num">321</td><td class="num">+1.37</td></tr>
-    </tbody>
-  </table>
-  </div>
-
-  <div class="dest-grid">
-    <div class="dest-card">
-      <span class="cat"><i class="ti ti-briefcase" style="font-size: 15px;" aria-hidden="true"></i>CMTA focus</span>
-      <p class="nm">TradePoint Atlantic</p>
-      <p class="sub">Scenario routes 139 more OD tests; 60-minute access rises by 8 tests.</p>
-      <p class="note">Late-return trips show the strongest travel-time improvement, while AM and midday inbound tests still need transfer/wait-time diagnosis.</p>
-    </div>
-    <div class="dest-card">
-      <span class="cat"><i class="ti ti-heart-rate-monitor" style="font-size: 15px;" aria-hidden="true"></i>CMTA focus</span>
-      <p class="nm">Johns Hopkins East Baltimore</p>
-      <p class="sub">Scenario routes 276 more OD tests; 60-minute access rises by 28 tests.</p>
-      <p class="note">Travel-time change is essentially neutral on average, but the routability gain is meaningful enough to map by origin.</p>
-    </div>
-    <div class="dest-card">
-      <span class="cat"><i class="ti ti-school" style="font-size: 15px;" aria-hidden="true"></i>CMTA focus</span>
-      <p class="nm">University of Baltimore</p>
-      <p class="sub">Largest newly routable count among the listed destinations: +367 net routed tests.</p>
-      <p class="note">This also has many improved and worsened trips, so the temporary-school story should be shown by origin and period.</p>
-    </div>
-    <div class="dest-card">
-      <span class="cat"><i class="ti ti-school" style="font-size: 15px;" aria-hidden="true"></i>CMTA focus</span>
-      <p class="nm">Northwest High School</p>
-      <p class="sub">Scenario routes 76 more OD tests, but 60-minute access falls by 14 tests.</p>
-      <p class="note">This directly supports CMTA's concern: Northwest should be tested explicitly with school-specific origins and time windows.</p>
-    </div>
   </div>
 
 </section>
@@ -679,75 +738,105 @@
 
   <div class="info-banner">
     <p class="lead">The frequency scenario helps most clearly where trips touch CityLink service, but the equity question is whether those gains reach the communities CMTA cares about.</p>
-    <p class="body">This tab starts with geography and time-of-day screens that are already available from the routed sample. They are trip-weighted screening results, not final person-level equity findings.</p>
+    <p class="body">This tab is a screening view for who appears to benefit in the routed trip sample. Transit desert is a study-area geography; race and income are model-trip summaries, useful for questions and QA but not final demographic findings.</p>
   </div>
 
-  <div class="access-summary-grid">
-    <div class="kpi"><p class="label">Transit-desert origin trips</p><p class="value">8,399</p><p class="foot">from the current trip sample</p></div>
-    <div class="kpi"><p class="label">Transit-desert improved 5+</p><p class="value" style="color: var(--color-text-success);">371</p><p class="foot">14 worsened by 5+ minutes</p></div>
-    <div class="kpi"><p class="label">Transit-desert mean change</p><p class="value" style="color: var(--color-text-success);">-0.66 min</p><p class="foot">both-routed trips</p></div>
-    <div class="kpi"><p class="label">Evening mean wait change</p><p class="value" style="color: var(--color-text-success);">-1.40 min</p><p class="foot">largest period-level wait gain</p></div>
+  <div class="equity-controls" role="tablist" aria-label="Equity screening layer">
+    <button class="equity-btn active" type="button" data-equity="desert" onclick="showEquity('desert')"><i class="ti ti-map-2" aria-hidden="true"></i> Transit desert</button>
+    <button class="equity-btn" type="button" data-equity="race" onclick="showEquity('race')"><i class="ti ti-users" aria-hidden="true"></i> Race</button>
+    <button class="equity-btn" type="button" data-equity="income" onclick="showEquity('income')"><i class="ti ti-wallet" aria-hidden="true"></i> Income</button>
   </div>
 
-  <div class="raised" style="margin: 0 0 1.25rem;">
-    <p class="pane-head"><i class="ti ti-map-pin" style="font-size: 15px;" aria-hidden="true"></i>Transit-desert screen</p>
-    <p class="mini-note">Transit desert tracts are census tracts where transit vulnerability exceeds available transit access, identified using a hybrid method that combines relative/spatial underservice with absolute minimum-service failures. Use this as a screening layer, then confirm any claim with maps.</p>
-    <div style="background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 12px 14px; margin: 0 0 12px;">
-      <p style="font-size: 13px; font-weight: 500; margin: 0 0 6px;">How we define a transit desert</p>
-      <p style="font-size: 12.5px; color: var(--color-text-secondary); margin: 0; line-height: 1.55;">The method compares demand and supply by tract: transit gap = transit vulnerability index (TVI) minus composite public transit accessibility (CPTA). A tract is flagged when it is in a high-gap spatial cluster or high-demand/low-supply quadrant, or when it fails at least three minimum-service thresholds and has above-median latent vulnerability.</p>
-    </div>
-    <div class="table-scroll">
-      <table class="std">
-        <thead><tr><th>Origin group</th><th class="num">Submitted trips</th><th class="num">Scenario routed</th><th class="num">Improved 5+</th><th class="num">Worsened 5+</th><th class="num">Mean time delta</th><th class="num">Scenario unrouted</th></tr></thead>
-        <tbody>
-          <tr><td>Transit-desert origins</td><td class="num">8,399</td><td class="num">7,939</td><td class="num">371</td><td class="num">14</td><td class="num">-0.66</td><td class="num">5.5%</td></tr>
-          <tr><td>Other origins</td><td class="num">32,302</td><td class="num">25,287</td><td class="num">905</td><td class="num">40</td><td class="num">-0.53</td><td class="num">21.7%</td></tr>
-        </tbody>
-      </table>
+  <div class="equity-panel active" data-equity-panel="desert">
+    <div class="equity-layout">
+      <div class="equity-map-card">
+        <div class="equity-map-head">
+          <div><p class="equity-title">Transit-desert screen</p><p class="equity-caption">MPO model zones from the study-area file. This is not a census-tract layer; it uses 205 model zones, including 177 marked transit desert.</p></div>
+          <span class="chip warn">205 zones</span>
+        </div>
+        <div class="screen-map">
+          <svg class="actual-zone-map" data-map-layer="desert" role="img" aria-label="Actual study-area zone map showing transit desert origin zones and CityLink routes"></svg>
+          <p class="map-note">Transit-desert flags come from study_area_zones_v2.csv. Use this as the routing study-area screen; a separate census-tract layer would be needed for tract-level equity geography.</p>
+        </div>
+        <div class="map-legend"><span><span class="legend-dot" style="background:#7c5a18;"></span>Transit desert zone</span><span><span class="legend-dot" style="background:#cdd9e8;"></span>Other study-area zone</span><span><span class="legend-dot" style="background:#2f6d32;"></span>Improved-trip origin</span><span><span class="legend-dot" style="background:#d44b35;"></span>CityLink route</span></div>
+      </div>
+      <div class="equity-summary-card">
+        <p class="pane-head"><i class="ti ti-chart-dots" aria-hidden="true"></i>Desert vs. other origins</p>
+        <div class="equity-stat-grid">
+          <div class="equity-stat"><p class="k">Transit-desert trips</p><p class="v">8,399</p></div>
+          <div class="equity-stat"><p class="k">Improved 5+</p><p class="v good">371</p></div>
+          <div class="equity-stat"><p class="k">Mean delta</p><p class="v good">-0.66 min</p></div>
+          <div class="equity-stat"><p class="k">Scenario unrouted</p><p class="v">5.5%</p></div>
+        </div>
+        <div class="equity-compare">
+          <div class="compare-row"><div class="compare-label">Transit desert</div><div class="compare-track"><span class="compare-fill" style="width: 41%;"></span></div><div class="compare-value">371 improved</div></div>
+          <div class="compare-row"><div class="compare-label">Other origins</div><div class="compare-track"><span class="compare-fill" style="width: 100%;"></span></div><div class="compare-value">905 improved</div></div>
+        </div>
+        <p class="mini-note">Method: transit gap = TVI minus CPTA, with high-gap clusters, high-demand/low-supply quadrants, and minimum-service failures used as flags.</p>
+      </div>
     </div>
   </div>
 
-  <div style="display: grid; grid-template-columns: 1fr; gap: 12px; margin: 0 0 1.25rem;">
-    <div class="raised">
-      <p class="pane-head"><i class="ti ti-clock-hour-4" style="font-size: 15px;" aria-hidden="true"></i>When benefits show up</p>
-      <div class="table-scroll">
-        <table class="std">
-          <thead><tr><th>Period</th><th class="num">Improved 5+</th><th class="num">Worsened 5+</th><th class="num">Mean travel-time delta</th><th class="num">Scenario unrouted</th></tr></thead>
-          <tbody>
-            <tr><td>AM peak</td><td class="num">323</td><td class="num">10</td><td class="num">-0.42</td><td class="num">19.1%</td></tr>
-            <tr><td>Midday</td><td class="num">295</td><td class="num">17</td><td class="num">-0.42</td><td class="num">16.6%</td></tr>
-            <tr><td>PM peak</td><td class="num">274</td><td class="num">11</td><td class="num">-0.45</td><td class="num">17.9%</td></tr>
-            <tr><td>Evening</td><td class="num">330</td><td class="num">11</td><td class="num">-1.47</td><td class="num">19.0%</td></tr>
-            <tr><td>Overnight</td><td class="num">54</td><td class="num">5</td><td class="num">-0.51</td><td class="num">21.8%</td></tr>
-          </tbody>
-        </table>
+  <div class="equity-panel" data-equity-panel="race">
+    <div class="equity-layout">
+      <div class="equity-map-card">
+        <div class="equity-map-head">
+          <div><p class="equity-title">Race screen</p><p class="equity-caption">Trip-weighted model sample by origin zone. This shows where trips in the model sample start, not the race composition of every resident in the zone.</p></div>
+          <span class="chip info">sample screen</span>
+        </div>
+        <div class="screen-map">
+          <svg class="actual-zone-map" data-map-layer="race" role="img" aria-label="Study-area model-zone map showing race group from modeled trip origins and CityLink routes"></svg>
+          <p class="map-note">Use this to ask whether improved trips in the sample are reaching non-white trip origins. Do not present it as a census race map until tract-level demographics are joined.</p>
+        </div>
+        <div class="map-legend"><span><span class="legend-dot" style="background:#4f7da7;"></span>Majority non-white sampled trips</span><span><span class="legend-dot" style="background:#d7dce8;"></span>Majority white sampled trips</span><span><span class="legend-dot" style="background:#2f6d32;"></span>Improved-trip origin</span><span><span class="legend-dot" style="background:#d44b35;"></span>CityLink route</span></div>
+      </div>
+      <div class="equity-summary-card">
+        <p class="pane-head"><i class="ti ti-users" aria-hidden="true"></i>Race sample summary</p>
+        <div class="equity-stat-grid">
+          <div class="equity-stat"><p class="k">Non-white submitted</p><p class="v">25,921</p></div>
+          <div class="equity-stat"><p class="k">Non-white improved</p><p class="v good">815</p></div>
+          <div class="equity-stat"><p class="k">White submitted</p><p class="v">14,780</p></div>
+          <div class="equity-stat"><p class="k">White improved</p><p class="v good">461</p></div>
+        </div>
+        <div class="equity-compare">
+          <div class="compare-row"><div class="compare-label">Non-white</div><div class="compare-track"><span class="compare-fill" style="width: 100%;"></span></div><div class="compare-value">-0.58 min</div></div>
+          <div class="compare-row"><div class="compare-label">White</div><div class="compare-track"><span class="compare-fill" style="width: 91%;"></span></div><div class="compare-value">-0.53 min</div></div>
+        </div>
+        <p class="mini-note">Interpretation: this is about benefits among trips in the model sample. It is not a person-level equity finding.</p>
       </div>
     </div>
-    <div class="raised">
-      <p class="pane-head"><i class="ti ti-users" style="font-size: 15px;" aria-hidden="true"></i>Race summary</p>
-      <div class="table-scroll">
-        <table class="std">
-          <thead><tr><th>Trip group</th><th class="num">Submitted</th><th class="num">Scenario routed</th><th class="num">Improved 5+</th><th class="num">Worsened 5+</th><th class="num">Mean delta</th></tr></thead>
-          <tbody>
-            <tr><td>Non-white</td><td class="num">25,921</td><td class="num">20,796</td><td class="num">815</td><td class="num">31</td><td class="num">-0.58</td></tr>
-            <tr><td>White</td><td class="num">14,780</td><td class="num">12,430</td><td class="num">461</td><td class="num">23</td><td class="num">-0.53</td></tr>
-          </tbody>
-        </table>
+  </div>
+
+  <div class="equity-panel" data-equity-panel="income">
+    <div class="equity-layout">
+      <div class="equity-map-card">
+        <div class="equity-map-head">
+          <div><p class="equity-title">Income screen</p><p class="equity-caption">Trip-weighted model sample by origin zone. This shows which sampled trips start in each modeled income group, not census tract household income.</p></div>
+          <span class="chip info">sample screen</span>
+        </div>
+        <div class="screen-map">
+          <svg class="actual-zone-map" data-map-layer="income" role="img" aria-label="Study-area model-zone map showing income group from modeled trip origins and CityLink routes"></svg>
+          <p class="map-note">Use this to see whether improved trips in the model sample appear in lower-income trip groups. Do not present it as a census income map until tract-level demographics are joined.</p>
+        </div>
+        <div class="map-legend"><span><span class="legend-dot" style="background:#3f7a45;"></span>Very low / low sampled trips</span><span><span class="legend-dot" style="background:#8fb66b;"></span>Moderate sampled trips</span><span><span class="legend-dot" style="background:#d7c883;"></span>High / very high sampled trips</span><span><span class="legend-dot" style="background:#2f6d32;"></span>Improved-trip origin</span><span><span class="legend-dot" style="background:#d44b35;"></span>CityLink route</span></div>
       </div>
-      <p class="pane-head" style="margin-top: 14px;"><i class="ti ti-wallet" style="font-size: 15px;" aria-hidden="true"></i>Income summary</p>
-      <div class="table-scroll">
-        <table class="std">
-          <thead><tr><th>Trip group</th><th class="num">Submitted</th><th class="num">Improved 5+</th><th class="num">Worsened 5+</th><th class="num">Mean delta</th></tr></thead>
-          <tbody>
-            <tr><td>Very low</td><td class="num">9,412</td><td class="num">345</td><td class="num">15</td><td class="num">-0.56</td></tr>
-            <tr><td>Low</td><td class="num">5,650</td><td class="num">181</td><td class="num">9</td><td class="num">-0.52</td></tr>
-            <tr><td>Moderate</td><td class="num">6,719</td><td class="num">209</td><td class="num">12</td><td class="num">-0.59</td></tr>
-            <tr><td>High</td><td class="num">8,740</td><td class="num">272</td><td class="num">8</td><td class="num">-0.61</td></tr>
-            <tr><td>Very high</td><td class="num">10,180</td><td class="num">269</td><td class="num">10</td><td class="num">-0.52</td></tr>
-          </tbody>
-        </table>
+      <div class="equity-summary-card">
+        <p class="pane-head"><i class="ti ti-wallet" aria-hidden="true"></i>Income sample summary</p>
+        <div class="equity-compare">
+          <div class="compare-row"><div class="compare-label">Very low</div><div class="compare-track"><span class="compare-fill" style="width: 100%;"></span></div><div class="compare-value">345 improved</div></div>
+          <div class="compare-row"><div class="compare-label">Low</div><div class="compare-track"><span class="compare-fill" style="width: 52%;"></span></div><div class="compare-value">181 improved</div></div>
+          <div class="compare-row"><div class="compare-label">Moderate</div><div class="compare-track"><span class="compare-fill" style="width: 61%;"></span></div><div class="compare-value">209 improved</div></div>
+          <div class="compare-row"><div class="compare-label">High</div><div class="compare-track"><span class="compare-fill" style="width: 79%;"></span></div><div class="compare-value">272 improved</div></div>
+          <div class="compare-row"><div class="compare-label">Very high</div><div class="compare-track"><span class="compare-fill" style="width: 78%;"></span></div><div class="compare-value">269 improved</div></div>
+        </div>
+        <div class="equity-stat-grid" style="margin-top: 12px;">
+          <div class="equity-stat"><p class="k">Best mean delta</p><p class="v good">High</p></div>
+          <div class="equity-stat"><p class="k">High mean delta</p><p class="v good">-0.61 min</p></div>
+          <div class="equity-stat"><p class="k">Map unit</p><p class="v">TAZ</p></div>
+          <div class="equity-stat"><p class="k">Finding level</p><p class="v">Screen</p></div>
+        </div>
+        <p class="mini-note">Interpretation: this is a model-sample screen for follow-up questions. It should not be used as a final distributional claim.</p>
       </div>
-      <p class="mini-note">These are trip-weighted summaries from the model sample. Use them as screening results, not person-level equity findings.</p>
     </div>
   </div>
 </section>
@@ -759,7 +848,7 @@
     <i class="ti ti-shield-exclamation ic" aria-hidden="true"></i>
     <div>
       <p class="ttl">These results are useful for scenario screening, but they are not a full ridership forecast or final public finding.</p>
-      <p class="bd">Read the caveats below before quoting any number to an external audience. The Dataset version box on Tab 1 documents the data behind the current run.</p>
+      <p class="bd">Read the caveats below before quoting any number to an external audience. The Study scope and interpretation panel on Tab 1 documents the data behind the current run.</p>
     </div>
   </div>
 
@@ -886,7 +975,7 @@
       <i class="ti ti-map-2 ic" aria-hidden="true"></i>
       <div>
         <p class="ttl">Transit desert layer</p>
-        <p class="bd">Transit-desert tracts are defined where transit vulnerability exceeds transit access, using a hybrid method that combines relative/spatial underservice with absolute minimum-service failures. Use as a screening geography for Tab 4.</p>
+        <p class="bd">Transit-desert model zones are defined in the study-area zone file. Use them as routing-screen geography for Tab 4; census-tract equity mapping requires a separate tract geography join.</p>
       </div>
       <span class="chip info">documented method</span>
     </div>
@@ -900,11 +989,12 @@
     </div>
   </div>
 
-  <p class="footer-line">This tab is the canonical reference for definitions and limits used across tabs 1-4. The Dataset version box on Tab 1 documents the data behind the current run.</p>
+  <p class="footer-line">This tab is the canonical reference for definitions and limits used across tabs 1-4. The Study scope and interpretation panel on Tab 1 documents the data behind the current run.</p>
 </section>
 
 </div>
 
+<script src="./assets/equity-map-data.js"></script>
 <script>
 function showTab(id) {
   document.querySelectorAll('.tab-btn').forEach(function(b) {
@@ -915,8 +1005,181 @@ function showTab(id) {
   document.querySelectorAll('.tab-panel').forEach(function(p) {
     p.classList.toggle('active', p.getAttribute('data-tab') === id);
   });
+  if (id === 't4') renderEquityMaps();
   if (window.scrollTo) window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
 }
+
+var equityMapsRendered = false;
+var svgNs = 'http://www.w3.org/2000/svg';
+
+function showEquity(id) {
+  document.querySelectorAll('.equity-btn').forEach(function(b) {
+    b.classList.toggle('active', b.getAttribute('data-equity') === id);
+  });
+  document.querySelectorAll('.equity-panel').forEach(function(p) {
+    p.classList.toggle('active', p.getAttribute('data-equity-panel') === id);
+  });
+  renderEquityMaps();
+}
+
+function renderEquityMaps() {
+  if (equityMapsRendered) return;
+  var zones = window.BALTOSIM_EQUITY_ZONES;
+  if (!zones || !zones.features || !zones.features.length) return;
+  var mappedFeatures = zones.features.filter(function(f) {
+    return f.properties && f.properties.in_study_area;
+  });
+  if (!mappedFeatures.length) mappedFeatures = zones.features;
+  var bbox = getGeometryBounds(mappedFeatures.map(function(f) { return f.geometry; }));
+  document.querySelectorAll('.actual-zone-map').forEach(function(svg) {
+    renderEquityMap(svg, svg.getAttribute('data-map-layer'), mappedFeatures, window.BALTOSIM_CITYLINK_ROUTES, bbox, zones.meta);
+  });
+  equityMapsRendered = true;
+}
+
+function getGeometryBounds(geometries) {
+  var bounds = [Infinity, Infinity, -Infinity, -Infinity];
+  geometries.forEach(function(geometry) {
+    walkCoordinates(geometry.coordinates, function(coord) {
+      if (typeof coord[0] !== 'number' || typeof coord[1] !== 'number') return;
+      bounds[0] = Math.min(bounds[0], coord[0]);
+      bounds[1] = Math.min(bounds[1], coord[1]);
+      bounds[2] = Math.max(bounds[2], coord[0]);
+      bounds[3] = Math.max(bounds[3], coord[1]);
+    });
+  });
+  return bounds;
+}
+
+function walkCoordinates(coords, visit) {
+  if (!Array.isArray(coords)) return;
+  if (typeof coords[0] === 'number') {
+    visit(coords);
+    return;
+  }
+  coords.forEach(function(part) { walkCoordinates(part, visit); });
+}
+
+function projectCoord(coord, bbox) {
+  var width = 960;
+  var height = 520;
+  var pad = 22;
+  var scaleX = (width - pad * 2) / Math.max(.000001, bbox[2] - bbox[0]);
+  var scaleY = (height - pad * 2) / Math.max(.000001, bbox[3] - bbox[1]);
+  var scale = Math.min(scaleX, scaleY);
+  var mapW = (bbox[2] - bbox[0]) * scale;
+  var mapH = (bbox[3] - bbox[1]) * scale;
+  var offsetX = (width - mapW) / 2;
+  var offsetY = (height - mapH) / 2;
+  return [
+    offsetX + (coord[0] - bbox[0]) * scale,
+    height - offsetY - (coord[1] - bbox[1]) * scale
+  ];
+}
+
+function ringToPath(ring, bbox) {
+  return ring.map(function(coord, i) {
+    var pt = projectCoord(coord, bbox);
+    return (i ? 'L' : 'M') + pt[0].toFixed(1) + ',' + pt[1].toFixed(1);
+  }).join(' ') + ' Z';
+}
+
+function polygonToPath(rings, bbox) {
+  return rings.map(function(ring) { return ringToPath(ring, bbox); }).join(' ');
+}
+
+function geometryToPath(geometry, bbox) {
+  if (!geometry) return '';
+  if (geometry.type === 'Polygon') return polygonToPath(geometry.coordinates, bbox);
+  if (geometry.type === 'MultiPolygon') {
+    return geometry.coordinates.map(function(poly) { return polygonToPath(poly, bbox); }).join(' ');
+  }
+  if (geometry.type === 'LineString') {
+    return geometry.coordinates.map(function(coord, i) {
+      var pt = projectCoord(coord, bbox);
+      return (i ? 'L' : 'M') + pt[0].toFixed(1) + ',' + pt[1].toFixed(1);
+    }).join(' ');
+  }
+  if (geometry.type === 'MultiLineString') {
+    return geometry.coordinates.map(function(line) {
+      return line.map(function(coord, i) {
+        var pt = projectCoord(coord, bbox);
+        return (i ? 'L' : 'M') + pt[0].toFixed(1) + ',' + pt[1].toFixed(1);
+      }).join(' ');
+    }).join(' ');
+  }
+  return '';
+}
+
+function zoneFill(props, layer) {
+  if (!props.in_study_area) return '#f3f1ea';
+  if (layer === 'desert') return props.desert ? '#7c5a18' : '#cdd9e8';
+  if (layer === 'race') {
+    if (!props.submitted) return '#ece9df';
+    if (props.race === 'non_white') return '#4f7da7';
+    if (props.race === 'white') return '#d7dce8';
+    return '#ece9df';
+  }
+  if (!props.submitted) return '#ece9df';
+  if (props.income === 'very_low' || props.income === 'low') return '#3f7a45';
+  if (props.income === 'moderate') return '#8fb66b';
+  if (props.income === 'high' || props.income === 'very_high') return '#d7c883';
+  return '#ece9df';
+}
+
+function zoneTitle(props, layer) {
+  var group = layer === 'desert' ? (props.desert ? 'transit desert' : 'other origin') : layer === 'race' ? (props.race || 'unknown').replace('_', '-') : (props.income || 'unknown').replace('_', ' ');
+  var name = props.zone_name ? props.zone_name + ' | ' : '';
+  var category = props.zone_category ? props.zone_category + ' | ' : '';
+  return name + category + 'Zone ' + props.zone + ' | ' + group + ' | submitted ' + (props.submitted || 0).toLocaleString() + ' | improved ' + (props.improved || 0).toLocaleString() + ' | worsened ' + (props.worsened || 0).toLocaleString() + ' | mean delta ' + (props.mean_delta == null ? 'n/a' : Number(props.mean_delta).toFixed(2) + ' min');
+}
+
+function renderEquityMap(svg, layer, zoneFeatures, routeCollection, bbox, meta) {
+  svg.setAttribute('viewBox', '0 0 960 520');
+  svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+  svg.textContent = '';
+
+  var zoneGroup = document.createElementNS(svgNs, 'g');
+  zoneGroup.setAttribute('aria-label', 'Study-area zones');
+  zoneFeatures.forEach(function(feature) {
+    var path = document.createElementNS(svgNs, 'path');
+    var props = feature.properties || {};
+    path.setAttribute('d', geometryToPath(feature.geometry, bbox));
+    path.setAttribute('fill', zoneFill(props, layer));
+    path.setAttribute('class', 'zone' + (props.improved > 0 ? ' has-gain' : ''));
+    var title = document.createElementNS(svgNs, 'title');
+    title.textContent = zoneTitle(props, layer);
+    path.appendChild(title);
+    zoneGroup.appendChild(path);
+  });
+  svg.appendChild(zoneGroup);
+
+  if (routeCollection && routeCollection.features) {
+    var routeGroup = document.createElementNS(svgNs, 'g');
+    routeGroup.setAttribute('aria-label', 'CityLink routes');
+    routeCollection.features.forEach(function(feature) {
+      var props = feature.properties || {};
+      var path = document.createElementNS(svgNs, 'path');
+      path.setAttribute('d', geometryToPath(feature.geometry, bbox));
+      path.setAttribute('class', 'route-line');
+      path.setAttribute('stroke', props.color || '#d44b35');
+      var title = document.createElementNS(svgNs, 'title');
+      title.textContent = props.route || props.name || 'CityLink route';
+      path.appendChild(title);
+      routeGroup.appendChild(path);
+    });
+    svg.appendChild(routeGroup);
+  }
+
+  var label = document.createElementNS(svgNs, 'text');
+  label.setAttribute('x', '26');
+  label.setAttribute('y', '36');
+  label.setAttribute('class', 'study-label');
+  label.textContent = (meta && meta.study_area_zones ? meta.study_area_zones : zoneFeatures.length) + ' MPO model zones - not census tracts';
+  svg.appendChild(label);
+}
+
+document.addEventListener('DOMContentLoaded', renderEquityMaps);
 </script>
 </body>
 </html>
